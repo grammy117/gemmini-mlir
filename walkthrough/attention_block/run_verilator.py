@@ -176,7 +176,7 @@ def main():
     cycles=re.findall(r'^BLOCK_CYCLES (\d+)$',text,re.MULTILINE)
     result['block_cycles']=int(cycles[0]) if len(cycles)==1 else None
     result['passed']=(result['returncode']==0 and not result['timed_out'] and result['harness_finish']
-                      and result['block_cycles'] is not None and result['comparison'].get('within_tolerance',False))
+                      and result['block_cycles'] is not None and result['comparison'].get('exact_bits',False))
     result['status']='passed' if result['passed'] else ('wall_timeout' if result['timed_out'] else 'failed_or_incomplete')
     result['simulator']=simulator
     result['elf']=identity(elf)

@@ -40,7 +40,8 @@ def main():
         np.save(BUILD/'actual.npy',actual)
         report.update(max_abs_error=float(np.max(np.abs(actual-golden))),
                       exact_bits=bool(np.array_equal(actual.view(np.uint32),golden.view(np.uint32))),
-                      passed=bool(run.returncode==0 and np.allclose(actual,golden,atol=1e-5,rtol=1e-5)))
+                      within_tolerance=bool(np.allclose(actual,golden,atol=1e-5,rtol=1e-5)),
+                      passed=bool(run.returncode==0 and np.array_equal(actual.view(np.uint32),golden.view(np.uint32))))
     else:
         report['passed']=False
     (BUILD/'execution_summary.json').write_text(json.dumps(report,indent=2))
