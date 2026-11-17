@@ -14,6 +14,7 @@ def settings():
                      ('scalar_quant_rne','GEMMINI_OPT_RNE'),
                      ('aligned_host_allocations','GEMMINI_OPT_ALIGNED_ALLOC'),
                      ('host_optimization_contracts','GEMMINI_OPT_CONTRACTS'),
+                     ('static_host_copies','GEMMINI_OPT_STATIC_COPIES'),
                      ('generalize_before_fusion','GEMMINI_OPT_FUSION')]:
         if env in os.environ:
             if os.environ[env] not in ('0','1'):

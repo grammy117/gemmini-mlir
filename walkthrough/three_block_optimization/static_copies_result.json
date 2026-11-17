@@ -1,0 +1,38 @@
+{
+  "schema": "gemmini.static_host_copies.ab.v1",
+  "measurements": [
+    {
+      "variant": "one_static_copies",
+      "receipt": "walkthrough/three_block_optimization/exploration/one_static_copies/verilator_20261117T120844Z/result.json",
+      "status": "passed",
+      "cycles": 463386,
+      "comparison": {
+        "complete_output": true,
+        "observed_elements": 256,
+        "max_abs_error": 0.0,
+        "exact_bits": true,
+        "within_tolerance": true
+      }
+    },
+    {
+      "variant": "one_contracts_copies",
+      "receipt": "walkthrough/three_block_optimization/exploration/one_contracts_copies/verilator_20261117T122102Z/result.json",
+      "status": "passed",
+      "cycles": 362214,
+      "comparison": {
+        "complete_output": true,
+        "observed_elements": 256,
+        "max_abs_error": 0.0,
+        "exact_bits": true,
+        "within_tolerance": true
+      }
+    }
+  ],
+  "baseline_without_contracts_or_copy_cycles": 483977,
+  "contracts_without_copy_cycles": 380748,
+  "functional_generalization": [
+    "three_contracts_copies: 21 device calls, bit-exact Spike",
+    "nearby_contracts_copies: 7 device calls, all 240 float outputs bit-exact Spike"
+  ],
+  "mechanism": "disjoint static strided copies to typed load/store loop producers before scalar loop lowering"
+}

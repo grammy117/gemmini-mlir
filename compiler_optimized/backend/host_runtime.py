@@ -383,6 +383,7 @@ def lower_whole_program(
         from .optimization import settings
         env['MERLIN_GENERALIZE_BEFORE_FUSE'] = '1' if settings()['generalize_before_fusion'] else '0'
         env['MERLIN_STOCK_ALIGNED_ALLOC'] = '1' if settings()['aligned_host_allocations'] else '0'
+        env['MERLIN_STOCK_STATIC_COPIES'] = '1' if settings()['static_host_copies'] else '0'
         if host_optimization == 'bounded_rne_fused':
             # Existing scalar-pipeline alternative: expose named pointwise
             # operations to the ordinary tensor fusion before bufferization.

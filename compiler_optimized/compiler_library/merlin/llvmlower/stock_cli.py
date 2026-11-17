@@ -120,11 +120,33 @@ def lower(
         if result.returncode or not output_path.is_file():
             raise PipelineError(f"stock-cli {stage} failed:\n{result.stdout}\n{result.stderr}")
 
-    invoke(
-        [llvm_install() / "bin" / "mlir-opt", source,
-         "--pass-pipeline=builtin.module(" + pipeline + ")", "-o", lowered],
-        "stock_upstream_lowering", source, lowered,
-    )
+    if os.environ.get('MERLIN_STOCK_STATIC_COPIES','0') == '1':
+        import json
+        from backend import host_copies
+        from backend.host_copies import rewrite
+        recipe.bind_source('static_host_copy_implementation',Path(host_copies.__file__))
+        marker='func.func(convert-linalg-to-loops)'
+        if pipeline.count(marker)!=1:raise ValueError('static copy lowering needs one scalar loop boundary')
+        prefix,suffix=pipeline.split(marker)
+        buffered=work/'model.bufferized.mlir'
+        invoke([llvm_install()/'bin/mlir-opt',source,
+            '--pass-pipeline=builtin.module('+prefix.rstrip(',')+')','--mlir-print-op-generic','-o',buffered],
+            'stock_bufferization',source,buffered)
+        rewritten,receipt=rewrite(buffered.read_text())
+        selected=work/'model.static-copies.mlir';selected.write_text(rewritten)
+        (work/'static-host-copies.json').write_text(json.dumps(receipt,indent=2))
+        recipe.bind_source('static_host_copy_input',buffered)
+        recipe.bind_source('static_host_copy_selection',selected)
+        recipe.bind_source('static_host_copy_receipt',work/'static-host-copies.json')
+        invoke([llvm_install()/'bin/mlir-opt',selected,
+            '--pass-pipeline=builtin.module('+marker+suffix+')','-o',lowered],
+            'stock_static_copy_lowering',selected,lowered)
+    else:
+        invoke(
+            [llvm_install() / "bin" / "mlir-opt", source,
+             "--pass-pipeline=builtin.module(" + pipeline + ")", "-o", lowered],
+            "stock_upstream_lowering", source, lowered,
+        )
     invoke(
         [mlir_translate(), "--mlir-to-llvmir", lowered, "-o", translated],
         "stock_llvm_translation", lowered, translated,
