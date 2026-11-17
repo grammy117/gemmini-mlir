@@ -1,7 +1,7 @@
 {
   "schema": "gemmini.general_optimizations.v1",
   "pure_tensor_cse": true,
-  "cluster_shared_products": false,
+  "cluster_shared_products": true,
   "wide_shared_rhs": true,
   "literal_shared_epochs": true,
   "shared_readout_epochs": true,

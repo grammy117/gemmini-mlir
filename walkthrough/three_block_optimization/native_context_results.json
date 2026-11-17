@@ -24,5 +24,6 @@
   ],
   "reason": "retain host function target-library context outside the generated freestanding C wrapper; inline remaining adapters and target helpers",
   "integrated_grouped_elf_byte_identical": true,
-  "default_decision": "pending three-block comparisons"
+  "default_decision": "inline_all with clustered products; selected by complete three-block cycles",
+  "three_block_sweep": "grouping_codegen_sweep.json"
 }

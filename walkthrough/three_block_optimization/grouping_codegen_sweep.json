@@ -1,0 +1,68 @@
+{
+  "schema": "gemmini.grouping_codegen_sweep.v1",
+  "measurements": [
+    {
+      "configuration": "separate_full",
+      "groups_per_block": 7,
+      "helper_policy": "inline_all",
+      "one": {
+        "cycles": 358988,
+        "receipt": "walkthrough/three_block_optimization/exploration/one_inline_all/verilator_20261117T124113Z/result.json",
+        "bit_exact": true
+      },
+      "three": {
+        "cycles": 1067468,
+        "receipt": "walkthrough/three_block_optimization/variants/three_optimized/verilator_20261117T124904Z/result.json",
+        "bit_exact": true
+      }
+    },
+    {
+      "configuration": "grouped_full",
+      "groups_per_block": 4,
+      "helper_policy": "inline_all",
+      "one": {
+        "cycles": 357674,
+        "receipt": "walkthrough/three_block_optimization/variants/one_cluster_optimized/verilator_20261117T125906Z/result.json",
+        "bit_exact": true
+      },
+      "three": {
+        "cycles": 1060118,
+        "receipt": "walkthrough/three_block_optimization/variants/three_cluster_optimized/verilator_20261117T131948Z/result.json",
+        "bit_exact": true
+      }
+    },
+    {
+      "configuration": "separate_context",
+      "groups_per_block": 7,
+      "helper_policy": "inline_adapters",
+      "one": {
+        "cycles": 359941,
+        "receipt": "walkthrough/three_block_optimization/exploration/one_inline_adapters/verilator_20261117T130948Z/result.json",
+        "bit_exact": true
+      },
+      "three": {
+        "cycles": 1062896,
+        "receipt": "walkthrough/three_block_optimization/variants/three_context_separate/verilator_20261117T133858Z/result.json",
+        "bit_exact": true
+      }
+    },
+    {
+      "configuration": "grouped_context",
+      "groups_per_block": 4,
+      "helper_policy": "inline_adapters",
+      "one": {
+        "cycles": 356696,
+        "receipt": "walkthrough/three_block_optimization/exploration/one_cluster_inline_adapters/verilator_20261117T131420Z/result.json",
+        "bit_exact": true
+      },
+      "three": {
+        "cycles": 1062721,
+        "receipt": "walkthrough/three_block_optimization/variants/three_context_grouped/verilator_20261117T132902Z/result.json",
+        "bit_exact": true
+      }
+    }
+  ],
+  "selected": "grouped_full",
+  "selection_metric": "lowest measured complete three-block entry cycles; one cold run per arm",
+  "no_global_optimality_claim": true
+}
