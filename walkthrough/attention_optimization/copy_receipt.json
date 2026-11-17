@@ -1,0 +1,8 @@
+{
+  "source_compiler": "/scratch/grammy/blast/gemmini-mlir/compiler",
+  "optimized_compiler": "/scratch/grammy/blast/gemmini-mlir/compiler_optimized",
+  "source_commit": "7cd030e13360fd0961bd83fa288bd9009ba813df",
+  "file_count": 1251,
+  "baseline_cycles": 443661,
+  "baseline_result": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_block/verilator_20261117T081841Z/result.json"
+}

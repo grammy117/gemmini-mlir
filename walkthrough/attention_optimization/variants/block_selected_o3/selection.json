@@ -1,0 +1,10 @@
+{
+  "name": "block_selected_o3",
+  "compiler": "/scratch/grammy/blast/gemmini-mlir/compiler_optimized",
+  "capture": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/capture",
+  "scalar_codegen_level": 3,
+  "source_cse": null,
+  "fusion": null,
+  "groups": null,
+  "environment": {}
+}

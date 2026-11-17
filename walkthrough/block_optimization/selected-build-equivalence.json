@@ -1,0 +1,22 @@
+{
+  "selected_build": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_selected_o3",
+  "measured_build": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_host_only_o3",
+  "checks": [
+    {
+      "artifact": "combined.ll",
+      "sha256": "2fca1d2ff6194863c51622c4672eea34fa3ab74abd1f976d805e97882659cf50",
+      "identical_bytes": true
+    },
+    {
+      "artifact": "model.o",
+      "sha256": "37a49e013fed4f34c3c0c1c5ee40b8ea49126727cb1f8a87e56fe09b02a2c246",
+      "identical_bytes": true
+    },
+    {
+      "artifact": "attention_block.elf",
+      "sha256": "47e18b15f4424c53181036c6e770b77d15e89d3d5a41b0f39b8389efc3987a8b",
+      "identical_bytes": true
+    }
+  ],
+  "scope": "default compiler rebuild is byte-identical to the timed seven-group variant"
+}

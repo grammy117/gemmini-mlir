@@ -1,0 +1,9 @@
+{
+  "name": "shared_fused_o3",
+  "compiler": "/scratch/grammy/blast/gemmini-mlir/compiler_optimized",
+  "capture": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_block/capture",
+  "scalar_codegen_level": 3,
+  "source_cse": null,
+  "fusion": null,
+  "environment": {}
+}

@@ -1,0 +1,85 @@
+{
+  "0": {
+    "weight": "block.n1.w",
+    "kind": "param",
+    "dtype": "float32",
+    "shape": [
+      48
+    ]
+  },
+  "1": {
+    "weight": "block.n2.w",
+    "kind": "param",
+    "dtype": "float32",
+    "shape": [
+      48
+    ]
+  },
+  "2": {
+    "weight": "block.attn.q.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      48,
+      48
+    ]
+  },
+  "3": {
+    "weight": "block.attn.k.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      48,
+      48
+    ]
+  },
+  "4": {
+    "weight": "block.attn.v.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      48,
+      48
+    ]
+  },
+  "5": {
+    "weight": "block.attn.o.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      48,
+      48
+    ]
+  },
+  "6": {
+    "weight": "block.mlp.g.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      48,
+      80
+    ]
+  },
+  "7": {
+    "weight": "block.mlp.u.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      48,
+      80
+    ]
+  },
+  "8": {
+    "weight": "block.mlp.dn.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      80,
+      48
+    ]
+  },
+  "9": {
+    "kind": "input",
+    "name": "x"
+  }
+}

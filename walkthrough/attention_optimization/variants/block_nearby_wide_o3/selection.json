@@ -1,0 +1,10 @@
+{
+  "name": "block_nearby_wide_o3",
+  "compiler": "/scratch/grammy/blast/gemmini-mlir/compiler_optimized",
+  "capture": "/scratch/grammy/blast/gemmini-mlir/walkthrough/block_optimization/nearby/capture",
+  "scalar_codegen_level": 3,
+  "source_cse": null,
+  "fusion": null,
+  "groups": null,
+  "environment": {}
+}

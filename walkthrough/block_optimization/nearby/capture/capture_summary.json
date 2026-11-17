@@ -1,0 +1,14 @@
+{
+  "architecture": "one complete Llama-style decoder layer",
+  "seed": 119,
+  "shape": {
+    "batch": 1,
+    "tokens": 5,
+    "model_width": 48,
+    "heads": 3,
+    "head_width": 16,
+    "mlp_width": 80
+  },
+  "capture_path": "fx_importer",
+  "opaque": {}
+}

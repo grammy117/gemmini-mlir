@@ -1,0 +1,75 @@
+{
+  "schema": "local.gemmini.transformer_rtl_comparison.v1",
+  "shape": {
+    "batch": 1,
+    "tokens": 8,
+    "width": 32,
+    "heads": 2
+  },
+  "attention_scope": [
+    "Q/K/V projections",
+    "RoPE",
+    "causal QK/softmax",
+    "probability-value product",
+    "output projection"
+  ],
+  "attention_input": "full-layer input normalized in PyTorch before capture",
+  "device_calls": {
+    "full_decoder_layer": 7,
+    "self_attention_only": 4
+  },
+  "weight_correspondence": "all four attention INT8 weight tensors byte-identical across captures",
+  "memory_model": "local GemminiRocketConfig magic memory; no FPGA/FireSim identity claim",
+  "measurements": [
+    {
+      "workload": "full_decoder_layer",
+      "result": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T080655Z/result.json",
+      "target_cycles": 716769,
+      "wall_seconds": 437.50837243301794,
+      "exact_outputs": 256,
+      "elf": {
+        "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T080655Z/transformer_layer.elf",
+        "bytes": 54488,
+        "sha256": "e222da4c0e0dcd0aad5ffc7f3ac9758ad400fe1ee770a1ab70403465f4b43393"
+      },
+      "simulator": {
+        "path": "/scratch/grammy/blast/merlin-tvm-tuning/out/build/baselines/tvm-gemmini/pinned-rtl/chipyard/sims/verilator/simulator-chipyard.harness-GemminiRocketConfig",
+        "bytes": 15819288,
+        "sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7"
+      },
+      "measurement_scope": "mcycle around complete kernel_entry; excludes boot, allocator reset and output printing"
+    },
+    {
+      "workload": "self_attention_only",
+      "result": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_block/verilator_20261117T081841Z/result.json",
+      "target_cycles": 443661,
+      "wall_seconds": 273.55387624586,
+      "exact_outputs": 256,
+      "elf": {
+        "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_block/verilator_20261117T081841Z/attention_block.elf",
+        "bytes": 43072,
+        "sha256": "f9049a606c054c25f686b9a725cf0bb89a8e6f0b870cfa51c047fd13f69aee8a"
+      },
+      "simulator": {
+        "path": "/scratch/grammy/blast/merlin-tvm-tuning/out/build/baselines/tvm-gemmini/pinned-rtl/chipyard/sims/verilator/simulator-chipyard.harness-GemminiRocketConfig",
+        "bytes": 15819288,
+        "sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7"
+      },
+      "measurement_scope": "mcycle around complete kernel_entry; excludes boot, allocator reset and output printing"
+    }
+  ],
+  "prior_attempts": [
+    {
+      "result": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T054235Z/result.json",
+      "status": "failed_or_incomplete"
+    },
+    {
+      "result": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T054444Z/result.json",
+      "status": "wall_timeout"
+    },
+    {
+      "result": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T080655Z/result.json",
+      "status": "passed"
+    }
+  ]
+}

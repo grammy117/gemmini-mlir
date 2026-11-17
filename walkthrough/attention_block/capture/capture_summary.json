@@ -1,0 +1,71 @@
+{
+  "architecture": "Llama-style self-attention only: Q/K/V, RoPE, causal softmax, value product, output projection",
+  "shape": {
+    "batch": 1,
+    "tokens": 8,
+    "model_width": 32,
+    "heads": 2,
+    "head_width": 16
+  },
+  "weights": "same seed-117 Q/K/V/O weights as the full-layer demonstration",
+  "input": "saved full-layer input after RMSNorm, prepared before capture",
+  "quantization": {
+    "activation_scale": 0.03125,
+    "weight_scale": 0.0078125,
+    "dequant_scale": 0.000244140625,
+    "rounding": "ties-even",
+    "clamp": [
+      -128,
+      127
+    ],
+    "accumulator": "int32",
+    "linear_count": 4
+  },
+  "capture_path": "fx_importer",
+  "opaque": {},
+  "quantized_vs_float_max_abs": 0.027570456266403198,
+  "operation_counts": {
+    "builtin.module": 1,
+    "func.func": 1,
+    "tensor.empty": 72,
+    "linalg.generic": 73,
+    "linalg.index": 3,
+    "arith.index_cast": 3,
+    "arith.constant": 44,
+    "arith.muli": 7,
+    "arith.addi": 7,
+    "linalg.yield": 80,
+    "tensor.splat": 24,
+    "arith.mulf": 18,
+    "math.roundeven": 4,
+    "arith.sitofp": 14,
+    "arith.cmpf": 8,
+    "arith.select": 9,
+    "arith.fptosi": 4,
+    "tensor.collapse_shape": 28,
+    "tensor.expand_shape": 34,
+    "arith.extsi": 8,
+    "linalg.transpose": 5,
+    "arith.divf": 6,
+    "math.powf": 2,
+    "math.cos": 4,
+    "tensor.concat": 6,
+    "math.sin": 4,
+    "tensor.extract_slice": 4,
+    "arith.negf": 2,
+    "arith.addf": 6,
+    "arith.subi": 1,
+    "arith.cmpi": 1,
+    "linalg.reduce": 2,
+    "arith.maximumf": 1,
+    "arith.subf": 1,
+    "math.exp": 1,
+    "func.return": 1
+  },
+  "diagnostics": [
+    "torch-mlir path disabled (use_torch_mlir=False); using FXImporter",
+    "torch-mlir not installed; falling back to CompGen FXImporter",
+    "externalized 4 weights -> /scratch/grammy/blast/gemmini-mlir/walkthrough/attention_block/capture/weights.safetensors",
+    "FXImporter fallback succeeded with 123 decomposed ops, 0 opaque, 0 kernel calls"
+  ]
+}

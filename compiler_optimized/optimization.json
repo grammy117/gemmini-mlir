@@ -1,0 +1,10 @@
+{
+  "schema": "gemmini.general_optimizations.v1",
+  "pure_tensor_cse": true,
+  "cluster_shared_products": false,
+  "wide_shared_rhs": true,
+  "literal_shared_epochs": true,
+  "shared_readout_epochs": true,
+  "generalize_before_fusion": true,
+  "native_optimization_level": 3
+}

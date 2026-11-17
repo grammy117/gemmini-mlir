@@ -1,0 +1,321 @@
+{
+  "schema": "gemmini.one_transformer_block_optimization.v1",
+  "scope": "one complete decoder block; seven original device products and intervening host operations",
+  "shape": {
+    "batch": 1,
+    "tokens": 8,
+    "model_width": 32,
+    "heads": 2,
+    "head_width": 16,
+    "mlp_width": 64
+  },
+  "source_sha256": "abc437e4bee0e131c960a7a3db9720e28b98205851970bcc8561b8909dd5dab8",
+  "selected_variant": "block_host_only_o3",
+  "settings": {
+    "schema": "gemmini.general_optimizations.v1",
+    "pure_tensor_cse": true,
+    "cluster_shared_products": false,
+    "wide_shared_rhs": true,
+    "literal_shared_epochs": true,
+    "shared_readout_epochs": true,
+    "generalize_before_fusion": true,
+    "native_optimization_level": 3
+  },
+  "compiler_changes": [
+    {
+      "path": "backend/host_runtime.py",
+      "sha256": "3a05c40d6502c4bc5ca4e43c5d8a0b32b77b8094ba59792ab369fd15957880bc"
+    },
+    {
+      "path": "backend/optimization.py",
+      "sha256": "b6981a928336004017e16fee19eb0d9781ed5f5655aed07a15109fba247824ef"
+    },
+    {
+      "path": "backend/program.py",
+      "sha256": "a7eaa8468890a13a5dd8db2d9d67314ab57e47fb444bd55719427af6621facf2"
+    },
+    {
+      "path": "backend/shared_products.py",
+      "sha256": "acabaeccd6d3c97d04f3fe2d5dd9568982c4c4e4e5e0cd1ec8e68205019bca06"
+    },
+    {
+      "path": "backend/shared_rhs_transfers.py",
+      "sha256": "e9274a063fb1bd97821a1fff5e5ff5120c8cc2264b763155d0e0cbc4a0515768"
+    },
+    {
+      "path": "backend/source_clusters.py",
+      "sha256": "eab98629c904c92c74be96e4f884b61878f694778b089ac27f7f68089fa40dd7"
+    },
+    {
+      "path": "backend/source_cse.py",
+      "sha256": "30190f2b9840509a2ae063510616c7b21937b627f769c2c925279032bab9fdbe"
+    },
+    {
+      "path": "optimization.json",
+      "sha256": "30ce2d22440805289635aee380466b4fec7f03b25c63895b7aab6bf3d5f6ec77"
+    }
+  ],
+  "source_cse": {
+    "schema": "optimized.pure_tensor_cse.v1",
+    "rewrites": {
+      "arith.constant": 28,
+      "linalg.generic": 26,
+      "tensor.collapse_shape": 3,
+      "tensor.expand_shape": 6,
+      "tensor.splat": 18
+    },
+    "source_sha256": "abc437e4bee0e131c960a7a3db9720e28b98205851970bcc8561b8909dd5dab8",
+    "output_sha256": "a280a5c9d2f92f28866501a8f8eb9764b21ea08fc30620a7d76c06d5eb1d5b56"
+  },
+  "optional_source_grouping_analysis": {
+    "schema": "optimized.shared_product_clusters.v1",
+    "clusters": [
+      {
+        "members": 3,
+        "shared": "lhs",
+        "shapes": [
+          [
+            [
+              8,
+              32
+            ],
+            [
+              32,
+              32
+            ]
+          ],
+          [
+            [
+              8,
+              32
+            ],
+            [
+              32,
+              32
+            ]
+          ],
+          [
+            [
+              8,
+              32
+            ],
+            [
+              32,
+              32
+            ]
+          ]
+        ],
+        "proof": "same SSA operand, dominating inputs, pure crossed operations, exact cloned zero seeds"
+      },
+      {
+        "members": 2,
+        "shared": "lhs",
+        "shapes": [
+          [
+            [
+              8,
+              32
+            ],
+            [
+              32,
+              64
+            ]
+          ],
+          [
+            [
+              8,
+              32
+            ],
+            [
+              32,
+              64
+            ]
+          ]
+        ],
+        "proof": "same SSA operand, dominating inputs, pure crossed operations, exact cloned zero seeds"
+      }
+    ],
+    "source_sha256": "a280a5c9d2f92f28866501a8f8eb9764b21ea08fc30620a7d76c06d5eb1d5b56",
+    "output_sha256": "a94769d22dad31b60675d8bf41c928fb91db10cbffe0173e0af2fc0bf78ec737"
+  },
+  "selected_group_structure": [
+    "Q",
+    "K",
+    "V",
+    "output projection",
+    "gate",
+    "up",
+    "down projection"
+  ],
+  "optional_grouped_structure": [
+    "Q,K,V",
+    "output projection",
+    "gate,up",
+    "down projection"
+  ],
+  "clustering_default": "new product-motion pass disabled after whole-block RTL A/B; host sharing is enabled across the original seven groups",
+  "optional_grouped_schedules": [
+    {
+      "members": 3,
+      "requested_activation_bytes": 256,
+      "weight_loads_before_coalescing": 12,
+      "weight_loads_after_coalescing": 6,
+      "uniform_readout": true,
+      "bounded_loop_specialization": true
+    },
+    {
+      "members": 2,
+      "requested_activation_bytes": 256,
+      "weight_loads_before_coalescing": 16,
+      "weight_loads_after_coalescing": 4,
+      "uniform_readout": true,
+      "bounded_loop_specialization": true
+    }
+  ],
+  "runs": [
+    {
+      "name": "block_baseline_o3",
+      "device_groups": 7,
+      "elf_bytes": 82736,
+      "block_cycles": 636290,
+      "wall_seconds": 328.9509199219756,
+      "exact_bits": true,
+      "elements": 256,
+      "result": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_baseline_o3/verilator_20261117T094412Z/result.json",
+      "simulator_sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7",
+      "source_sha256": "abc437e4bee0e131c960a7a3db9720e28b98205851970bcc8561b8909dd5dab8",
+      "elf": {
+        "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_baseline_o3/verilator_20261117T094412Z/attention_block.elf",
+        "bytes": 82816,
+        "sha256": "c93cc20dd4a77410065433f94184d8e603104a445bcccb36fff4399d05bb0a4e"
+      }
+    },
+    {
+      "name": "block_host_only_o3",
+      "device_groups": 7,
+      "elf_bytes": 70448,
+      "block_cycles": 537032,
+      "wall_seconds": 303.4393872329965,
+      "exact_bits": true,
+      "elements": 256,
+      "result": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_host_only_o3/verilator_20261117T095456Z/result.json",
+      "simulator_sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7",
+      "source_sha256": "abc437e4bee0e131c960a7a3db9720e28b98205851970bcc8561b8909dd5dab8",
+      "elf": {
+        "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_host_only_o3/verilator_20261117T095456Z/attention_block.elf",
+        "bytes": 70528,
+        "sha256": "0750834fa5a262a38e6275a8821a839ceba447e849e0c35c5aabdd8bd97febd9"
+      }
+    },
+    {
+      "name": "block_wide_o3",
+      "device_groups": 4,
+      "elf_bytes": 70136,
+      "block_cycles": 545958,
+      "wall_seconds": 302.76376315997913,
+      "exact_bits": true,
+      "elements": 256,
+      "result": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_wide_o3/verilator_20261117T094948Z/result.json",
+      "simulator_sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7",
+      "source_sha256": "abc437e4bee0e131c960a7a3db9720e28b98205851970bcc8561b8909dd5dab8",
+      "elf": {
+        "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_wide_o3/verilator_20261117T094948Z/attention_block.elf",
+        "bytes": 70216,
+        "sha256": "e535868df67f27177a6ad5e08fd998ae3a6687cac621a10edb015b7232ba0ec6"
+      }
+    },
+    {
+      "name": "block_readout_o3",
+      "device_groups": 4,
+      "elf_bytes": 70136,
+      "block_cycles": 545409,
+      "wall_seconds": 303.79649116657674,
+      "exact_bits": true,
+      "elements": 256,
+      "result": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_readout_o3/verilator_20261117T100030Z/result.json",
+      "simulator_sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7",
+      "source_sha256": "abc437e4bee0e131c960a7a3db9720e28b98205851970bcc8561b8909dd5dab8",
+      "elf": {
+        "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_readout_o3/verilator_20261117T100030Z/attention_block.elf",
+        "bytes": 70216,
+        "sha256": "c6fe1935f0261836fd99ec7c72d91e55979011aaa95baf67f723034d08e3e753"
+      }
+    }
+  ],
+  "selected_build_equivalence": {
+    "selected_build": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_selected_o3",
+    "measured_build": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_host_only_o3",
+    "checks": [
+      {
+        "artifact": "combined.ll",
+        "sha256": "2fca1d2ff6194863c51622c4672eea34fa3ab74abd1f976d805e97882659cf50",
+        "identical_bytes": true
+      },
+      {
+        "artifact": "model.o",
+        "sha256": "37a49e013fed4f34c3c0c1c5ee40b8ea49126727cb1f8a87e56fe09b02a2c246",
+        "identical_bytes": true
+      },
+      {
+        "artifact": "attention_block.elf",
+        "sha256": "47e18b15f4424c53181036c6e770b77d15e89d3d5a41b0f39b8389efc3987a8b",
+        "identical_bytes": true
+      }
+    ],
+    "scope": "default compiler rebuild is byte-identical to the timed seven-group variant"
+  },
+  "improvement": {
+    "cycles_saved_vs_same_O3": 99258,
+    "cycle_reduction_vs_same_O3": 0.15599490798220939,
+    "speedup_vs_same_O3": 1.1848269749288682,
+    "cycles_saved_by_group_path_vs_host_only": 0,
+    "cycle_reduction_vs_host_only": 0.0,
+    "optional_grouped_cycle_increase_vs_selected": 0.015598698029167801,
+    "historical_O1_cycles": 716769,
+    "cycle_reduction_vs_historical_O1": 0.2507600077570319
+  },
+  "host_static_allocation_sites": {
+    "original": 33,
+    "optimized": 27
+  },
+  "activation_quantization_chains": {
+    "original": 7,
+    "optimized": 4
+  },
+  "requested_device_activation_bytes": {
+    "original": 2048,
+    "selected": 2048,
+    "optional_grouped": 1280,
+    "scope": "logical requested bytes; not measured memory bus traffic"
+  },
+  "nearby_functional": {
+    "shape": {
+      "batch": 1,
+      "tokens": 5,
+      "model_width": 48,
+      "heads": 3,
+      "head_width": 16,
+      "mlp_width": 80
+    },
+    "engine": "Spike plus Gemmini; no RTL timing claim",
+    "exact_bits": true,
+    "elements": 240,
+    "device_groups": 7
+  },
+  "checks": {
+    "source_cse": 8,
+    "clustering": 8,
+    "transfer_and_readout": 7,
+    "frozen_source_inventory_files": 1251
+  },
+  "measurement": "mcycle around complete kernel_entry including host and accelerator; boot/reset/output excluded; one RTL run per arm",
+  "simulator": "unchanged GemminiRocketConfig Verilator binary; magic memory; one host CPU core",
+  "toolchain_adaptation": "both arms compile emitted combined LLVM with Clang -O3, contraction off and vectorization disabled; local opt executable absent",
+  "limits": [
+    "W8A8 projection linears with FP32 host attention, norms, residuals and SiLU",
+    "tiny seeded demonstration block; no trained checkpoint or multi-block validation",
+    "source motion crosses only pure operations with dominating identical SSA inputs; all original product outputs remain",
+    "no cross-call scratchpad residency assumption; unsupported schedules keep existing lowering"
+  ],
+  "reproduce": "/scratch/grammy/blast/model2MLIR/.venv/bin/python /scratch/grammy/blast/gemmini-mlir/walkthrough/block_optimization/reproduce.py --name block_repeat --rtl"
+}

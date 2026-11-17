@@ -1,0 +1,42 @@
+{
+  "0": {
+    "weight": "attention.q.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "1": {
+    "weight": "attention.k.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "2": {
+    "weight": "attention.v.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "3": {
+    "weight": "attention.o.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "4": {
+    "kind": "input",
+    "name": "x"
+  }
+}

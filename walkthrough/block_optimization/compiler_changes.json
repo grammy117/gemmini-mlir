@@ -1,0 +1,42 @@
+[
+  {
+    "path": "backend/host_runtime.py",
+    "sha256": "3a05c40d6502c4bc5ca4e43c5d8a0b32b77b8094ba59792ab369fd15957880bc",
+    "kind": "changed"
+  },
+  {
+    "path": "backend/optimization.py",
+    "sha256": "033ed545a32f4a69c55ed2f343ae425d962ebeb6a7258b23c625e2588bbf11e9",
+    "kind": "added"
+  },
+  {
+    "path": "backend/program.py",
+    "sha256": "a7eaa8468890a13a5dd8db2d9d67314ab57e47fb444bd55719427af6621facf2",
+    "kind": "changed"
+  },
+  {
+    "path": "backend/shared_products.py",
+    "sha256": "16241c825ef5e4b8ef26a78ddd7ea5a74b10e4bcf35a75ffb42b8733dcbf13da",
+    "kind": "changed"
+  },
+  {
+    "path": "backend/shared_rhs_transfers.py",
+    "sha256": "e9274a063fb1bd97821a1fff5e5ff5120c8cc2264b763155d0e0cbc4a0515768",
+    "kind": "changed"
+  },
+  {
+    "path": "backend/source_clusters.py",
+    "sha256": "eab98629c904c92c74be96e4f884b61878f694778b089ac27f7f68089fa40dd7",
+    "kind": "added"
+  },
+  {
+    "path": "backend/source_cse.py",
+    "sha256": "30190f2b9840509a2ae063510616c7b21937b627f769c2c925279032bab9fdbe",
+    "kind": "added"
+  },
+  {
+    "path": "optimization.json",
+    "sha256": "604f562b31d6f7efaef9f2879cd4f890a25a5903029cd199984f2a7d770f61e6",
+    "kind": "added"
+  }
+]

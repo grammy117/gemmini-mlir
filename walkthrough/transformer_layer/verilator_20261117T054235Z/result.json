@@ -1,0 +1,42 @@
+{
+  "argv": [
+    "/scratch/grammy/blast/merlin-tvm-tuning/out/build/baselines/tvm-gemmini/pinned-rtl/chipyard/sims/verilator/simulator-chipyard.harness-GemminiRocketConfig",
+    "+permissive",
+    "+max-cycles=2000000",
+    "+loadmem=/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T054235Z/transformer_layer.elf",
+    "+permissive-off",
+    "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T054235Z/transformer_layer.elf"
+  ],
+  "returncode": -6,
+  "timed_out": false,
+  "wall_seconds": 1.1174908909015357,
+  "log": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T054235Z/verilator.log",
+    "bytes": 111,
+    "sha256": "75e35f108cc12ef011ea63c3b97e669f3176afe9608f8f1f905293fb9dafc030"
+  },
+  "comparison": {
+    "complete_output": false,
+    "observed_elements": 0
+  },
+  "harness_finish": false,
+  "block_cycles": null,
+  "passed": false,
+  "status": "failed_or_incomplete",
+  "simulator": {
+    "path": "/scratch/grammy/blast/merlin-tvm-tuning/out/build/baselines/tvm-gemmini/pinned-rtl/chipyard/sims/verilator/simulator-chipyard.harness-GemminiRocketConfig",
+    "bytes": 15819288,
+    "sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7"
+  },
+  "elf": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T054235Z/transformer_layer.elf",
+    "bytes": 54488,
+    "sha256": "e222da4c0e0dcd0aad5ffc7f3ac9758ad400fe1ee770a1ab70403465f4b43393"
+  },
+  "reference": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/capture/golden.npy",
+    "bytes": 1152,
+    "sha256": "f14d2ca2e2527c754911c242b1d07547a9fb4c6122ee746a36524b391e3cf205"
+  },
+  "measurement_scope": "mcycle around complete kernel_entry; excludes boot, allocator reset and output printing"
+}

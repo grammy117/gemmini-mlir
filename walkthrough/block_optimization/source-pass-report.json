@@ -1,0 +1,91 @@
+{
+  "cse": {
+    "schema": "optimized.pure_tensor_cse.v1",
+    "rewrites": {
+      "arith.constant": 28,
+      "linalg.generic": 26,
+      "tensor.collapse_shape": 3,
+      "tensor.expand_shape": 6,
+      "tensor.splat": 18
+    },
+    "source_sha256": "abc437e4bee0e131c960a7a3db9720e28b98205851970bcc8561b8909dd5dab8",
+    "output_sha256": "a280a5c9d2f92f28866501a8f8eb9764b21ea08fc30620a7d76c06d5eb1d5b56"
+  },
+  "clusters": {
+    "schema": "optimized.shared_product_clusters.v1",
+    "clusters": [
+      {
+        "members": 3,
+        "shared": "lhs",
+        "shapes": [
+          [
+            [
+              8,
+              32
+            ],
+            [
+              32,
+              32
+            ]
+          ],
+          [
+            [
+              8,
+              32
+            ],
+            [
+              32,
+              32
+            ]
+          ],
+          [
+            [
+              8,
+              32
+            ],
+            [
+              32,
+              32
+            ]
+          ]
+        ],
+        "proof": "same SSA operand, dominating inputs, pure crossed operations, exact cloned zero seeds"
+      },
+      {
+        "members": 2,
+        "shared": "lhs",
+        "shapes": [
+          [
+            [
+              8,
+              32
+            ],
+            [
+              32,
+              64
+            ]
+          ],
+          [
+            [
+              8,
+              32
+            ],
+            [
+              32,
+              64
+            ]
+          ]
+        ],
+        "proof": "same SSA operand, dominating inputs, pure crossed operations, exact cloned zero seeds"
+      }
+    ],
+    "source_sha256": "a280a5c9d2f92f28866501a8f8eb9764b21ea08fc30620a7d76c06d5eb1d5b56",
+    "output_sha256": "a94769d22dad31b60675d8bf41c928fb91db10cbffe0173e0af2fc0bf78ec737"
+  },
+  "regions": [
+    3,
+    1,
+    2,
+    1
+  ]
+}

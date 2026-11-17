@@ -1,0 +1,72 @@
+{
+  "architecture": "one complete Llama-style decoder layer",
+  "shape": {
+    "batch": 1,
+    "tokens": 8,
+    "model_width": 32,
+    "heads": 2,
+    "head_width": 16,
+    "mlp_width": 64
+  },
+  "weights": "seed-117 random initialization; demonstration only",
+  "quantization": {
+    "activation_scale": 0.03125,
+    "weight_scale": 0.0078125,
+    "dequant_scale": 0.000244140625,
+    "rounding": "ties-even",
+    "clamp": [
+      -128,
+      127
+    ],
+    "accumulator": "int32",
+    "linear_count": 7
+  },
+  "capture_path": "fx_importer",
+  "opaque": {},
+  "quantized_vs_float_max_abs": 0.030511632561683655,
+  "operation_counts": {
+    "builtin.module": 1,
+    "func.func": 1,
+    "tensor.empty": 107,
+    "linalg.generic": 111,
+    "linalg.index": 3,
+    "arith.index_cast": 3,
+    "arith.constant": 66,
+    "arith.muli": 10,
+    "arith.addi": 10,
+    "linalg.yield": 120,
+    "arith.mulf": 32,
+    "tensor.splat": 39,
+    "linalg.reduce": 4,
+    "arith.addf": 13,
+    "arith.divf": 9,
+    "tensor.collapse_shape": 36,
+    "tensor.expand_shape": 42,
+    "math.rsqrt": 2,
+    "math.roundeven": 7,
+    "arith.sitofp": 23,
+    "arith.cmpf": 14,
+    "arith.select": 15,
+    "arith.fptosi": 7,
+    "arith.extsi": 14,
+    "linalg.transpose": 5,
+    "math.powf": 2,
+    "math.cos": 4,
+    "tensor.concat": 6,
+    "math.sin": 4,
+    "tensor.extract_slice": 4,
+    "arith.negf": 3,
+    "arith.subi": 1,
+    "arith.cmpi": 1,
+    "arith.maximumf": 1,
+    "arith.subf": 1,
+    "math.exp": 2,
+    "func.return": 1
+  },
+  "diagnostics": [
+    "torch-mlir path disabled (use_torch_mlir=False); using FXImporter",
+    "torch-mlir not installed; falling back to CompGen FXImporter",
+    "externalized 9 weights -> /scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/capture/weights.safetensors",
+    "FXImporter fallback succeeded with 167 decomposed ops, 0 opaque, 0 kernel calls"
+  ]
+}

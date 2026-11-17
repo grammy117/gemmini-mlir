@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+/walkthrough/**/build/
+/walkthrough/**/compiler_out/
+/walkthrough/**/fresh10-authored-compiler/
+/walkthrough/**/stages/
+/walkthrough/**/capture/frontend_trace.json
+/walkthrough/**/capture/exported_program.pt2
+/walkthrough/**/source-clustered.mlir
+/walkthrough/**/verilator_*/*.o
+/walkthrough/**/verilator_*/*.so
+/walkthrough/**/verilator_*/*.elf
+/walkthrough/**/verilator_*/*.map
+/walkthrough/**/verilator_*/actual.npy
+/walkthrough/**/verilator_*/main.c
+/walkthrough/**/verilator_*/one_host_thread.c
