@@ -133,9 +133,10 @@ def main():
         raise RuntimeError('timed ELF failed its Spike functional control')
     discovery={'historical_receipt':identity(HISTORY),'simulator':simulator,
                'historical_controls':[{k:r[k] for k in ['case','wall_seconds','returncode','timed_out']} for r in history['accepted_controls']],
-               'initial_wall_estimate_seconds':[180,360],
-               'workload':'self-attention only: Q/K/V, RoPE, causal softmax, value product, output projection',
-               'estimate_basis':'complete full decoder layer measured 437.508 s in the preceding local RTL run',
+               'historical_attention_wall_estimate_seconds':[180,360],
+               'workload':json.loads((ROOT/'capture/capture_summary.json').read_text()).get('architecture','self-attention block'),
+               'capture_source':identity(ROOT/'capture/model.mlir'),
+               'estimate_basis':'historical attention estimate; use recorded target cycles and current machine load for the selected capture',
                'prior_attempt':'same block exceeded the original 180-second wall limit',
                'approved_wall_limit_seconds':args.seconds,
                'configuration':'GemminiRocketConfig; Rocket + 16x16 INT8 Gemmini; 256MiB magic memory',

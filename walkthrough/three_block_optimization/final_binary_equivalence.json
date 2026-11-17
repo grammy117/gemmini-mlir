@@ -1,0 +1,97 @@
+{
+  "schema": "gemmini.final_binary_equivalence.v1",
+  "checks": [
+    {
+      "measured_variant": "walkthrough/three_block_optimization/exploration/one_inline_all",
+      "final_variant": "walkthrough/three_block_optimization/variants/one_final",
+      "compiler_commit_of_final_build": "6b021295295558ea25cd39dbc9a91da3fa3b90d5",
+      "identical_build_products": [
+        {
+          "file": "model.o",
+          "sha256": "7dca95f57897deabccf97d0e2e2ffaef4159844fa6db6d587f1a465178c8b845"
+        },
+        {
+          "file": "main.o",
+          "sha256": "eb5df4381ffc052ba8c8addd0a477906336a876fc525f75d4b80af536d291c70"
+        },
+        {
+          "file": "crt.o",
+          "sha256": "cdd8da5053eb03083276cddb8aaf7f66738ecedab741de1925e56f63c52f6a76"
+        },
+        {
+          "file": "htif.o",
+          "sha256": "1499345c87ef7bc612736981968291390bfe0d2029b01154973b34b9d530788f"
+        },
+        {
+          "file": "libc_min.o",
+          "sha256": "d6385442a37bb3182f9d28019ead24d8dd47a79f748e077bcf93433154f565d7"
+        },
+        {
+          "file": "merlin_malloc.o",
+          "sha256": "51dee7bc346f8b728af6651ae7249adaf3c6220c5f5badb6346cc540d856022a"
+        },
+        {
+          "file": "mlir_runtime.o",
+          "sha256": "fa5694dc7ef4fb85616c51794819b8c23a1b8698eb579eb9fde51c4e56c42bd1"
+        },
+        {
+          "file": "attention_block.elf",
+          "sha256": "f89f3e696ec873aa60669dc678c8390ffbbba9bb2e73296747ff5ad9dcf05af9"
+        },
+        {
+          "file": "main.c",
+          "sha256": "a0f1dfc8f8a19bed35767468173d7153d9b6ed9c59e5a49bd605b630d7e5a536"
+        }
+      ],
+      "capture_files_identical": true,
+      "receipt": "walkthrough/three_block_optimization/exploration/one_inline_all/verilator_20261117T124113Z/result.json",
+      "additional_rtl_sample": false
+    },
+    {
+      "measured_variant": "walkthrough/three_block_optimization/variants/three_optimized",
+      "final_variant": "walkthrough/three_block_optimization/variants/three_final",
+      "compiler_commit_of_final_build": "6b021295295558ea25cd39dbc9a91da3fa3b90d5",
+      "identical_build_products": [
+        {
+          "file": "model.o",
+          "sha256": "7d85f016ff05a1d7823442ced86506e140b20cc56a9aec88a1fa6aae58c37289"
+        },
+        {
+          "file": "main.o",
+          "sha256": "af561877ce0c73a98900eb6b730cdcaef65e9a32e59838afe17b5583394ab743"
+        },
+        {
+          "file": "crt.o",
+          "sha256": "cdd8da5053eb03083276cddb8aaf7f66738ecedab741de1925e56f63c52f6a76"
+        },
+        {
+          "file": "htif.o",
+          "sha256": "1499345c87ef7bc612736981968291390bfe0d2029b01154973b34b9d530788f"
+        },
+        {
+          "file": "libc_min.o",
+          "sha256": "d6385442a37bb3182f9d28019ead24d8dd47a79f748e077bcf93433154f565d7"
+        },
+        {
+          "file": "merlin_malloc.o",
+          "sha256": "51dee7bc346f8b728af6651ae7249adaf3c6220c5f5badb6346cc540d856022a"
+        },
+        {
+          "file": "mlir_runtime.o",
+          "sha256": "fa5694dc7ef4fb85616c51794819b8c23a1b8698eb579eb9fde51c4e56c42bd1"
+        },
+        {
+          "file": "attention_block.elf",
+          "sha256": "544439b9c97bb75b48c17c0dea2adcf7e2038001a7d0a56f52c7aeadf4b5667f"
+        },
+        {
+          "file": "main.c",
+          "sha256": "cfdd9bce9d5ab709b976c7aae606dad18b842b3f9bf6fae5450044377508728c"
+        }
+      ],
+      "capture_files_identical": true,
+      "receipt": "walkthrough/three_block_optimization/variants/three_optimized/verilator_20261117T124904Z/result.json",
+      "additional_rtl_sample": false
+    }
+  ]
+}

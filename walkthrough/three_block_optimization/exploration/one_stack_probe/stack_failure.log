@@ -1,0 +1,10 @@
+TRANSFORMER_BEGIN
+
+FATAL: model arena -- invalid free pointer
+  requested 0x0 align 0
+  arena 0x88000000 .. 0x88400000 brk 0x88000000
+  free span 0x0 largest free 0x0 largest request 0x0
+  allocations 0 frees 0 reused 0 split 0 merged 0
+Gemmini extension configured with:
+    dim = 16
+*** FAILED *** (tohost = 2304)

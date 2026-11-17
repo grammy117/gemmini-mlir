@@ -17,7 +17,7 @@
   "comparisons": 43515,
   "oracle": "original runtime roundevenf, ordered clamps and signed conversion; NaN source poison excluded",
   "elf_sha256": "d988735c5bfe2cf3b6f9362e3a3fc96d3ec7f1c77aae4b3aa743cca861a488ae",
-  "implementation_sha256": "9ba10e5ae550b441172dc7c5e194cf7e8a4796f42b2addb47c7a001333ed450d",
+  "implementation_sha256": "10f05db92b890d8cbe6b5699d05f56a63d81153751d343bc91cf3bf8cbcabde6",
   "routes": [
     {
       "schema": "gemmini.scalar_bounded_quant_rne.v1",

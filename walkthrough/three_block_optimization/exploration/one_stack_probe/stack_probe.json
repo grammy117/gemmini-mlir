@@ -1,0 +1,11 @@
+{
+  "status": "rejected_functional_failure",
+  "builder_returncode": 1,
+  "source_variant": "one_contracts_copies",
+  "promotion": "upstream promote-buffers-to-stack; max allocation 4096 bytes; no dynamic ranks",
+  "total_static_allocations_guard": "verified <= 65536 bytes including 64 bytes padding per allocation before probe",
+  "failure": "FATAL: model arena -- invalid free pointer",
+  "reason": "opaque device call returns its destination descriptor; ownership deallocation treats the result as owned, and frees the promoted output allocation",
+  "selected": false,
+  "rtl_run": false
+}

@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parent
 REPO=ROOT.parents[1]
-CATEGORIES=['memrefCopy','expf','rsqrtf','powf','sinf','cosf','malloc','free']
+CATEGORIES=['memrefCopy','expf','rsqrtf','powf','sinf','cosf','malloc','free','aligned_alloc']
 
 
 def main():
@@ -50,7 +50,7 @@ def main():
 #include <stddef.h>
 #include "htif.h"
 static uint64_t segments[128],last;
-static uint64_t calls[8],ticks[8];
+static uint64_t calls[9],ticks[9];
 static inline uint64_t now(void) {uint64_t v;__asm__ volatile("csrr %0,mcycle":"=r"(v)::"memory");return v;}
 void merlin_profile_mark(int i) {uint64_t t=now();if(i)segments[i]+=t-last;last=t;}
 static void end(int i,uint64_t begin) {ticks[i]+=now()-begin;calls[i]++;}
@@ -65,10 +65,12 @@ void __wrap_memrefCopy(int64_t n,void*a,void*b) {uint64_t t=now();__real_memrefC
 void *__wrap_malloc(size_t n) {uint64_t t=now();void*p=__real_malloc(n);end(6,t);return p;}
 extern void __real_free(void*);
 void __wrap_free(void*p) {uint64_t t=now();__real_free(p);end(7,t);}
+extern void *__real_aligned_alloc(size_t,size_t);
+void *__wrap_aligned_alloc(size_t a,size_t n) {uint64_t t=now();void*p=__real_aligned_alloc(a,n);end(8,t);return p;}
 void merlin_profile_dump(void) {
 '''
     c+=f'for(int i=1;i<={2*groups+1};i++) {{htif_puts("SEG ");htif_putd(i);htif_putc(\' \');htif_putd(segments[i]);htif_putc(\'\\n\');}}\n'
-    c+='''for(int i=0;i<8;i++) {htif_puts("CAT ");htif_putd(i);htif_putc(' ');htif_putd(calls[i]);htif_putc(' ');htif_putd(ticks[i]);htif_putc('\\n');}
+    c+='''for(int i=0;i<9;i++) {htif_puts("CAT ");htif_putd(i);htif_putc(' ');htif_putd(calls[i]);htif_putc(' ');htif_putd(ticks[i]);htif_putc('\\n');}
 }
 '''
     (build/'profile.c').write_text(c)

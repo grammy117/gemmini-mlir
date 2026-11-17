@@ -1,0 +1,137 @@
+{
+  "receipt": "walkthrough/three_block_optimization/exploration/profile_one_optimized/verilator_20261117T130342Z/result.json",
+  "cycles": 378628,
+  "wall_seconds": 294.9503557300195,
+  "timed_elf_sha256": "b6c63411dec38e7c9717175854b1a0bb1d88625ebe196b79e0d9866b98745eac",
+  "exact_bits": true,
+  "elements": 256,
+  "instrumentation_increase": 0.054709349616143266,
+  "host_segment_cycles": 372358,
+  "device_segment_cycles": 5794,
+  "device_segment_fraction": 0.015321881148321309,
+  "categories": [
+    {
+      "category": "memrefCopy",
+      "calls": 0,
+      "cycles": 0
+    },
+    {
+      "category": "expf",
+      "calls": 640,
+      "cycles": 110829
+    },
+    {
+      "category": "rsqrtf",
+      "calls": 16,
+      "cycles": 1295
+    },
+    {
+      "category": "powf",
+      "calls": 8,
+      "cycles": 4739
+    },
+    {
+      "category": "sinf",
+      "calls": 64,
+      "cycles": 5541
+    },
+    {
+      "category": "cosf",
+      "calls": 64,
+      "cycles": 6302
+    },
+    {
+      "category": "malloc",
+      "calls": 0,
+      "cycles": 0
+    },
+    {
+      "category": "free",
+      "calls": 32,
+      "cycles": 2655
+    },
+    {
+      "category": "aligned_alloc",
+      "calls": 32,
+      "cycles": 3341
+    }
+  ],
+  "segments": [
+    {
+      "id": 1,
+      "cycles": 12812,
+      "kind": "host"
+    },
+    {
+      "id": 2,
+      "cycles": 814,
+      "kind": "device"
+    },
+    {
+      "id": 3,
+      "cycles": 2281,
+      "kind": "host"
+    },
+    {
+      "id": 4,
+      "cycles": 724,
+      "kind": "device"
+    },
+    {
+      "id": 5,
+      "cycles": 2074,
+      "kind": "host"
+    },
+    {
+      "id": 6,
+      "cycles": 660,
+      "kind": "device"
+    },
+    {
+      "id": 7,
+      "cycles": 177587,
+      "kind": "host"
+    },
+    {
+      "id": 8,
+      "cycles": 760,
+      "kind": "device"
+    },
+    {
+      "id": 9,
+      "cycles": 17704,
+      "kind": "host"
+    },
+    {
+      "id": 10,
+      "cycles": 987,
+      "kind": "device"
+    },
+    {
+      "id": 11,
+      "cycles": 143,
+      "kind": "host"
+    },
+    {
+      "id": 12,
+      "cycles": 867,
+      "kind": "device"
+    },
+    {
+      "id": 13,
+      "cycles": 145219,
+      "kind": "host"
+    },
+    {
+      "id": 14,
+      "cycles": 982,
+      "kind": "device"
+    },
+    {
+      "id": 15,
+      "cycles": 14538,
+      "kind": "host"
+    }
+  ],
+  "scope": "intrusive counters; categories are included in host segments, not additive"
+}

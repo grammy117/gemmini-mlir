@@ -1,0 +1,31 @@
+{
+  "schema": "gemmini.source_probes.v1",
+  "integer_constant_fold": {
+    "variant": "one_integer_constants",
+    "folded_generators": 3,
+    "elements_each": 8,
+    "bit_exact_spike": true,
+    "before_elf_bytes": 65792,
+    "after_elf_bytes": 70072,
+    "runtime_calls_unchanged": {
+      "expf": 640,
+      "rsqrtf": 16,
+      "sinf": 64,
+      "cosf": 64,
+      "powf": 0
+    },
+    "selected": false,
+    "rtl_speedup_claim": false
+  },
+  "stack_promotion": {
+    "status": "rejected_functional_failure",
+    "builder_returncode": 1,
+    "source_variant": "one_contracts_copies",
+    "promotion": "upstream promote-buffers-to-stack; max allocation 4096 bytes; no dynamic ranks",
+    "total_static_allocations_guard": "verified <= 65536 bytes including 64 bytes padding per allocation before probe",
+    "failure": "FATAL: model arena -- invalid free pointer",
+    "reason": "opaque device call returns its destination descriptor; ownership deallocation treats the result as owned, and frees the promoted output allocation",
+    "selected": false,
+    "rtl_run": false
+  }
+}
