@@ -2,13 +2,13 @@
   "schema": "gemmini.final_binary_equivalence.v1",
   "checks": [
     {
-      "measured_variant": "walkthrough/three_block_optimization/exploration/one_inline_all",
-      "final_variant": "walkthrough/three_block_optimization/variants/one_final",
-      "compiler_commit_of_final_build": "6b021295295558ea25cd39dbc9a91da3fa3b90d5",
+      "measured_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_cluster_optimized",
+      "final_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_release",
+      "compiler_commit_of_final_build": "274f251629019e341719f9fc7eb98ff00003f956",
       "identical_build_products": [
         {
           "file": "model.o",
-          "sha256": "7dca95f57897deabccf97d0e2e2ffaef4159844fa6db6d587f1a465178c8b845"
+          "sha256": "8c793f2a0c5473a72f4c029980684cc536296b23c819e62ec67f3edd5f95d8f1"
         },
         {
           "file": "main.o",
@@ -36,7 +36,7 @@
         },
         {
           "file": "attention_block.elf",
-          "sha256": "f89f3e696ec873aa60669dc678c8390ffbbba9bb2e73296747ff5ad9dcf05af9"
+          "sha256": "25299129efd57b49c57954ea21a60e177297a5f50638f1d8e33046c7207a731a"
         },
         {
           "file": "main.c",
@@ -44,17 +44,17 @@
         }
       ],
       "capture_files_identical": true,
-      "receipt": "walkthrough/three_block_optimization/exploration/one_inline_all/verilator_20261117T124113Z/result.json",
+      "receipt": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_cluster_optimized/verilator_20261117T125906Z/result.json",
       "additional_rtl_sample": false
     },
     {
-      "measured_variant": "walkthrough/three_block_optimization/variants/three_optimized",
-      "final_variant": "walkthrough/three_block_optimization/variants/three_final",
-      "compiler_commit_of_final_build": "6b021295295558ea25cd39dbc9a91da3fa3b90d5",
+      "measured_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_cluster_optimized",
+      "final_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_release",
+      "compiler_commit_of_final_build": "274f251629019e341719f9fc7eb98ff00003f956",
       "identical_build_products": [
         {
           "file": "model.o",
-          "sha256": "7d85f016ff05a1d7823442ced86506e140b20cc56a9aec88a1fa6aae58c37289"
+          "sha256": "3f62a4afaca05c8608642941df9b5d2bd33d0ab8a2e6325555a02e0ad91a8faf"
         },
         {
           "file": "main.o",
@@ -82,7 +82,7 @@
         },
         {
           "file": "attention_block.elf",
-          "sha256": "544439b9c97bb75b48c17c0dea2adcf7e2038001a7d0a56f52c7aeadf4b5667f"
+          "sha256": "658a62f30599ada4d2398f8f28cfc8a0af90d26c26e3151d7eaec488e0c114e1"
         },
         {
           "file": "main.c",
@@ -90,7 +90,99 @@
         }
       ],
       "capture_files_identical": true,
-      "receipt": "walkthrough/three_block_optimization/variants/three_optimized/verilator_20261117T124904Z/result.json",
+      "receipt": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_cluster_optimized/verilator_20261117T131948Z/result.json",
+      "additional_rtl_sample": false
+    },
+    {
+      "measured_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/two_full_grouped",
+      "final_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/two_release",
+      "compiler_commit_of_final_build": "274f251629019e341719f9fc7eb98ff00003f956",
+      "identical_build_products": [
+        {
+          "file": "model.o",
+          "sha256": "0e59bc45ea470d3ff571f935d3aa3b654935865f4aa860dc2a895ae54b02c005"
+        },
+        {
+          "file": "main.o",
+          "sha256": "32de53e052dee2b418a7f37b84fb26a50636aea96d45bd431671f6520fcf05a0"
+        },
+        {
+          "file": "crt.o",
+          "sha256": "cdd8da5053eb03083276cddb8aaf7f66738ecedab741de1925e56f63c52f6a76"
+        },
+        {
+          "file": "htif.o",
+          "sha256": "1499345c87ef7bc612736981968291390bfe0d2029b01154973b34b9d530788f"
+        },
+        {
+          "file": "libc_min.o",
+          "sha256": "d6385442a37bb3182f9d28019ead24d8dd47a79f748e077bcf93433154f565d7"
+        },
+        {
+          "file": "merlin_malloc.o",
+          "sha256": "51dee7bc346f8b728af6651ae7249adaf3c6220c5f5badb6346cc540d856022a"
+        },
+        {
+          "file": "mlir_runtime.o",
+          "sha256": "fa5694dc7ef4fb85616c51794819b8c23a1b8698eb579eb9fde51c4e56c42bd1"
+        },
+        {
+          "file": "attention_block.elf",
+          "sha256": "40316a26975d307b07f638e44859ff58ce92544ee7df95e41129005301bd7f9c"
+        },
+        {
+          "file": "main.c",
+          "sha256": "87658d4b210e01c5e5ff86ba1cb396ddc4d3300342eb884befaf713be33e59a8"
+        }
+      ],
+      "capture_files_identical": true,
+      "receipt": null,
+      "additional_rtl_sample": false
+    },
+    {
+      "measured_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/nearby_full_grouped",
+      "final_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/nearby_release",
+      "compiler_commit_of_final_build": "274f251629019e341719f9fc7eb98ff00003f956",
+      "identical_build_products": [
+        {
+          "file": "model.o",
+          "sha256": "b3cb0198ef42c6c2729ba2573144466df3b95ce8a5fb4a8b8d39e5cc45c1da46"
+        },
+        {
+          "file": "main.o",
+          "sha256": "8ca97355ff054d00afec3bb2ed21e8c1129ef1da3ae37728959c85951e12dbaa"
+        },
+        {
+          "file": "crt.o",
+          "sha256": "cdd8da5053eb03083276cddb8aaf7f66738ecedab741de1925e56f63c52f6a76"
+        },
+        {
+          "file": "htif.o",
+          "sha256": "1499345c87ef7bc612736981968291390bfe0d2029b01154973b34b9d530788f"
+        },
+        {
+          "file": "libc_min.o",
+          "sha256": "d6385442a37bb3182f9d28019ead24d8dd47a79f748e077bcf93433154f565d7"
+        },
+        {
+          "file": "merlin_malloc.o",
+          "sha256": "51dee7bc346f8b728af6651ae7249adaf3c6220c5f5badb6346cc540d856022a"
+        },
+        {
+          "file": "mlir_runtime.o",
+          "sha256": "fa5694dc7ef4fb85616c51794819b8c23a1b8698eb579eb9fde51c4e56c42bd1"
+        },
+        {
+          "file": "attention_block.elf",
+          "sha256": "6c1911e1cbdf09c7a8057d064675b4efe7f3d966e8901fa1f6469796a933e1de"
+        },
+        {
+          "file": "main.c",
+          "sha256": "99833bf55f8d68b2d3581774dc6f7602a1655ceed29cedfa7aa644ca93933581"
+        }
+      ],
+      "capture_files_identical": true,
+      "receipt": null,
       "additional_rtl_sample": false
     }
   ]

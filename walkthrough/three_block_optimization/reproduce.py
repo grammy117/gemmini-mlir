@@ -2,7 +2,8 @@
 
 --checkpoint reconstructs the completed one-block compiler for a fair baseline.
 Without it, the current compiler_optimized is used. RTL is pinned to one core,
-with a 30-minute wall limit; three blocks take roughly 12--20 minutes per run.
+with a 30-minute wall limit; optimized three-block runs take about 9--12 minutes
+on this machine, while the checkpoint can take 12--20 minutes under host load.
 """
 import argparse
 import hashlib

@@ -1,0 +1,26 @@
+{
+  "name": "one_release",
+  "compiler": "/scratch/grammy/blast/gemmini-mlir/compiler_optimized",
+  "capture": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/capture",
+  "scalar_codegen_level": 3,
+  "source_cse": null,
+  "fusion": null,
+  "groups": null,
+  "rne": null,
+  "compiler_settings": {
+    "schema": "gemmini.general_optimizations.v1",
+    "pure_tensor_cse": true,
+    "cluster_shared_products": true,
+    "wide_shared_rhs": true,
+    "literal_shared_epochs": true,
+    "shared_readout_epochs": true,
+    "generalize_before_fusion": true,
+    "scalar_quant_rne": true,
+    "host_optimization_contracts": true,
+    "static_host_copies": true,
+    "aligned_host_allocations": true,
+    "native_optimization_level": 3,
+    "native_helper_policy": "inline_all"
+  },
+  "environment": {}
+}

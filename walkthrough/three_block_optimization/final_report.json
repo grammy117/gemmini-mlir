@@ -1,0 +1,793 @@
+{
+  "schema": "gemmini.final_transformer_optimization.v1",
+  "branch": "work/transformer-intergroup-3block",
+  "original_snapshot_commit": "7cd030e13360fd0961bd83fa288bd9009ba813df",
+  "checkpoint_commit": "969ce4377f7e5a8f06ef5cd5b774f867570b1a97",
+  "compiler_implementation_commit": "274f251629019e341719f9fc7eb98ff00003f956",
+  "settings": {
+    "schema": "gemmini.general_optimizations.v1",
+    "pure_tensor_cse": true,
+    "cluster_shared_products": true,
+    "wide_shared_rhs": true,
+    "literal_shared_epochs": true,
+    "shared_readout_epochs": true,
+    "generalize_before_fusion": true,
+    "scalar_quant_rne": true,
+    "host_optimization_contracts": true,
+    "static_host_copies": true,
+    "aligned_host_allocations": true,
+    "native_optimization_level": 3,
+    "native_helper_policy": "inline_all"
+  },
+  "selected_configuration": "grouped_all",
+  "scope": "one and three complete sequential W8A8/FP32 decoder blocks; all final outputs compared; functional two-block and nearby-shape checks",
+  "measurements": {
+    "1": {
+      "blocks": 1,
+      "before_groups": 7,
+      "after_groups": 4,
+      "logical_products": 7,
+      "before": {
+        "receipt": "walkthrough/attention_optimization/variants/block_host_only_o3/verilator_20261117T095456Z/result.json",
+        "cycles": 537032,
+        "wall_seconds": 303.4393872329965,
+        "timed_elf_sha256": "0750834fa5a262a38e6275a8821a839ceba447e849e0c35c5aabdd8bd97febd9",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "after": {
+        "receipt": "walkthrough/three_block_optimization/variants/one_cluster_optimized/verilator_20261117T125906Z/result.json",
+        "cycles": 357674,
+        "wall_seconds": 276.0956947472878,
+        "timed_elf_sha256": "f0c9e40c20fe39b83732ba0684d28ff91aa322431a28e0d7e04a2e51a312abc7",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "cycle_reduction": 0.33398009802022965,
+      "speedup": 1.5014566336943698
+    },
+    "3": {
+      "blocks": 3,
+      "before_groups": 21,
+      "after_groups": 12,
+      "logical_products": 21,
+      "before": {
+        "receipt": "walkthrough/three_block_optimization/variants/three_checkpoint_o3/verilator_20261117T105109Z/result.json",
+        "cycles": 1639267,
+        "wall_seconds": 833.7753919837996,
+        "timed_elf_sha256": "163015ffe4e64610bc3fee4e45417cb8fa5a267c9a844decb27715e18c7252a8",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "after": {
+        "receipt": "walkthrough/three_block_optimization/variants/three_cluster_optimized/verilator_20261117T131948Z/result.json",
+        "cycles": 1060118,
+        "wall_seconds": 554.0200161184184,
+        "timed_elf_sha256": "04d68e29643d42d25a4422646346e20692226555e4f4f2a708ab7ba3974e8476",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "cycle_reduction": 0.3532975409131033,
+      "speedup": 1.546306165917379
+    }
+  },
+  "functional_checks": [
+    {
+      "variant": "one_release",
+      "blocks": 1,
+      "elements": 256,
+      "device_groups": 4,
+      "distinct_device_kernels": 4,
+      "elf_bytes": 68936,
+      "elf_sha256": "25299129efd57b49c57954ea21a60e177297a5f50638f1d8e33046c7207a731a",
+      "bit_exact": true,
+      "source_mlir_sha256": "abc437e4bee0e131c960a7a3db9720e28b98205851970bcc8561b8909dd5dab8",
+      "weights_sha256": "31ff4fa954df54a1196dad1c47552e94276a1fbbb392e9dd51992a9d916f3827",
+      "reference_sha256": "f14d2ca2e2527c754911c242b1d07547a9fb4c6122ee746a36524b391e3cf205",
+      "capture_description": "one complete Llama-style decoder layer"
+    },
+    {
+      "variant": "two_release",
+      "blocks": 2,
+      "elements": 256,
+      "device_groups": 8,
+      "distinct_device_kernels": 4,
+      "elf_bytes": 120872,
+      "elf_sha256": "40316a26975d307b07f638e44859ff58ce92544ee7df95e41129005301bd7f9c",
+      "bit_exact": true,
+      "source_mlir_sha256": "934840cfde1725782eb3141d79c1a55f449dc92c96c0787aabd840095b33f721",
+      "weights_sha256": "8b8dfc5827997ab40a0193f444de8518d3a24f9dbb0963b35e1e1e551ec81a5e",
+      "reference_sha256": "bd30b83fc1dd4f8dd4ca6df0b803c06d94e727253425dbab47cefa9a27d10f12",
+      "capture_description": "2 complete Llama-style decoder layers in sequence"
+    },
+    {
+      "variant": "three_release",
+      "blocks": 3,
+      "elements": 256,
+      "device_groups": 12,
+      "distinct_device_kernels": 4,
+      "elf_bytes": 168704,
+      "elf_sha256": "658a62f30599ada4d2398f8f28cfc8a0af90d26c26e3151d7eaec488e0c114e1",
+      "bit_exact": true,
+      "source_mlir_sha256": "ea4b9bfc8af8700e24b494f0f109abc2fce27a842eb5237fa4a19866069a28ed",
+      "weights_sha256": "1067892a7f2d8fc77ffd483aa4363e244a0c71f554d53a3190de43be98d6cc2b",
+      "reference_sha256": "7848cca7940c4b7c4c0b3e74d7eef46c6dcb63a500545c23edf639029f13888e",
+      "capture_description": "3 complete Llama-style decoder layers in sequence"
+    },
+    {
+      "variant": "nearby_release",
+      "blocks": 1,
+      "elements": 240,
+      "device_groups": 4,
+      "distinct_device_kernels": 4,
+      "elf_bytes": 75400,
+      "elf_sha256": "6c1911e1cbdf09c7a8057d064675b4efe7f3d966e8901fa1f6469796a933e1de",
+      "bit_exact": true,
+      "source_mlir_sha256": "229d4819b9b243166e73a1b1bacaa9d28410525d9e8ce3a5d7b12caf30601fb8",
+      "weights_sha256": "3cb373247e76e7199023f858f99011f22068cb693f685ef88331e0748f13cbfd",
+      "reference_sha256": "63a2be7b87d8937e096fe4a01ad74247a4fd12a60e2854815a80148938a8a6f9",
+      "capture_description": "one complete Llama-style decoder layer"
+    }
+  ],
+  "post_host_pass_profile": {
+    "receipt": "walkthrough/three_block_optimization/exploration/profile_one_optimized/verilator_20261117T130342Z/result.json",
+    "cycles": 378628,
+    "wall_seconds": 294.9503557300195,
+    "timed_elf_sha256": "b6c63411dec38e7c9717175854b1a0bb1d88625ebe196b79e0d9866b98745eac",
+    "exact_bits": true,
+    "elements": 256,
+    "instrumentation_increase": 0.054709349616143266,
+    "host_segment_cycles": 372358,
+    "device_segment_cycles": 5794,
+    "device_segment_fraction": 0.015321881148321309,
+    "categories": [
+      {
+        "category": "memrefCopy",
+        "calls": 0,
+        "cycles": 0
+      },
+      {
+        "category": "expf",
+        "calls": 640,
+        "cycles": 110829
+      },
+      {
+        "category": "rsqrtf",
+        "calls": 16,
+        "cycles": 1295
+      },
+      {
+        "category": "powf",
+        "calls": 8,
+        "cycles": 4739
+      },
+      {
+        "category": "sinf",
+        "calls": 64,
+        "cycles": 5541
+      },
+      {
+        "category": "cosf",
+        "calls": 64,
+        "cycles": 6302
+      },
+      {
+        "category": "malloc",
+        "calls": 0,
+        "cycles": 0
+      },
+      {
+        "category": "free",
+        "calls": 32,
+        "cycles": 2655
+      },
+      {
+        "category": "aligned_alloc",
+        "calls": 32,
+        "cycles": 3341
+      }
+    ],
+    "segments": [
+      {
+        "id": 1,
+        "cycles": 12812,
+        "kind": "host"
+      },
+      {
+        "id": 2,
+        "cycles": 814,
+        "kind": "device"
+      },
+      {
+        "id": 3,
+        "cycles": 2281,
+        "kind": "host"
+      },
+      {
+        "id": 4,
+        "cycles": 724,
+        "kind": "device"
+      },
+      {
+        "id": 5,
+        "cycles": 2074,
+        "kind": "host"
+      },
+      {
+        "id": 6,
+        "cycles": 660,
+        "kind": "device"
+      },
+      {
+        "id": 7,
+        "cycles": 177587,
+        "kind": "host"
+      },
+      {
+        "id": 8,
+        "cycles": 760,
+        "kind": "device"
+      },
+      {
+        "id": 9,
+        "cycles": 17704,
+        "kind": "host"
+      },
+      {
+        "id": 10,
+        "cycles": 987,
+        "kind": "device"
+      },
+      {
+        "id": 11,
+        "cycles": 143,
+        "kind": "host"
+      },
+      {
+        "id": 12,
+        "cycles": 867,
+        "kind": "device"
+      },
+      {
+        "id": 13,
+        "cycles": 145219,
+        "kind": "host"
+      },
+      {
+        "id": 14,
+        "cycles": 982,
+        "kind": "device"
+      },
+      {
+        "id": 15,
+        "cycles": 14538,
+        "kind": "host"
+      }
+    ],
+    "scope": "intrusive counters; categories are included in host segments, not additive",
+    "policy": "inline_all; seven groups; post-host-pass attribution"
+  },
+  "functional_call_profile": {
+    "policy": "inline_all",
+    "groups": 4,
+    "source": "walkthrough/three_block_optimization/exploration/profile_full_grouped",
+    "counts": [
+      {
+        "category": "memrefCopy",
+        "calls": 0
+      },
+      {
+        "category": "expf",
+        "calls": 640
+      },
+      {
+        "category": "rsqrtf",
+        "calls": 16
+      },
+      {
+        "category": "powf",
+        "calls": 8
+      },
+      {
+        "category": "sinf",
+        "calls": 64
+      },
+      {
+        "category": "cosf",
+        "calls": 64
+      },
+      {
+        "category": "malloc",
+        "calls": 0
+      },
+      {
+        "category": "free",
+        "calls": 32
+      },
+      {
+        "category": "aligned_alloc",
+        "calls": 32
+      }
+    ],
+    "engine": "Spike functional call counts only; no timing claim",
+    "bit_exact": true
+  },
+  "grouping_inlining_sweep": {
+    "separate_all": {
+      "one": {
+        "receipt": "walkthrough/three_block_optimization/exploration/one_inline_all/verilator_20261117T124113Z/result.json",
+        "cycles": 358988,
+        "wall_seconds": 279.32001706399024,
+        "timed_elf_sha256": "f0e06affbf8e59b916d14821627057ded391cfaee56c6e9779f0b727c6ac1e1a",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "three": {
+        "receipt": "walkthrough/three_block_optimization/variants/three_optimized/verilator_20261117T124904Z/result.json",
+        "cycles": 1067468,
+        "wall_seconds": 551.2248988929205,
+        "timed_elf_sha256": "5c49e5baa1157d074dbb043189bfb6f019e605b1209fc572764ecab4ea865672",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "groups_per_block": 7,
+      "policy": "inline_all"
+    },
+    "grouped_all": {
+      "one": {
+        "receipt": "walkthrough/three_block_optimization/variants/one_cluster_optimized/verilator_20261117T125906Z/result.json",
+        "cycles": 357674,
+        "wall_seconds": 276.0956947472878,
+        "timed_elf_sha256": "f0c9e40c20fe39b83732ba0684d28ff91aa322431a28e0d7e04a2e51a312abc7",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "three": {
+        "receipt": "walkthrough/three_block_optimization/variants/three_cluster_optimized/verilator_20261117T131948Z/result.json",
+        "cycles": 1060118,
+        "wall_seconds": 554.0200161184184,
+        "timed_elf_sha256": "04d68e29643d42d25a4422646346e20692226555e4f4f2a708ab7ba3974e8476",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "groups_per_block": 4,
+      "policy": "inline_all"
+    },
+    "separate_context": {
+      "one": {
+        "receipt": "walkthrough/three_block_optimization/exploration/one_inline_adapters/verilator_20261117T130948Z/result.json",
+        "cycles": 359941,
+        "wall_seconds": 271.9679318093695,
+        "timed_elf_sha256": "6fc80f4527746d7181877222a4c01c3d9fb58da4a6a6b1f28b8f8999b577c54c",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "three": {
+        "receipt": "walkthrough/three_block_optimization/variants/three_context_separate/verilator_20261117T133858Z/result.json",
+        "cycles": 1062896,
+        "wall_seconds": 542.7015950153582,
+        "timed_elf_sha256": "e9ce0e6066792511718d5c5dd9a63d985167e95cab002785a40a17a158ef4c1c",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "groups_per_block": 7,
+      "policy": "inline_adapters"
+    },
+    "grouped_context": {
+      "one": {
+        "receipt": "walkthrough/three_block_optimization/exploration/one_cluster_inline_adapters/verilator_20261117T131420Z/result.json",
+        "cycles": 356696,
+        "wall_seconds": 271.8313715918921,
+        "timed_elf_sha256": "748d7ca13c813f8a6c53239cd7e4c228b16c5341b8942b3719bccb5c2269c640",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "three": {
+        "receipt": "walkthrough/three_block_optimization/variants/three_context_grouped/verilator_20261117T132902Z/result.json",
+        "cycles": 1062721,
+        "wall_seconds": 544.9215129390359,
+        "timed_elf_sha256": "64093087ef34c89a3e4be7f8a9a767f588b925ed911cce71c5f82497bdf3c3ef",
+        "exact_bits": true,
+        "elements": 256
+      },
+      "groups_per_block": 4,
+      "policy": "inline_adapters"
+    }
+  },
+  "native_codegen": {
+    "schema": "gemmini.native_codegen_comparison.v1",
+    "baseline_cycles": 362214,
+    "scope": "model object only; fixed runtime objects, captures and numeric flags",
+    "measurements": [
+      {
+        "variant": "one_model_o2",
+        "policy": "o2",
+        "cycles": 362586,
+        "receipt": "walkthrough/three_block_optimization/exploration/one_model_o2/verilator_20261117T122634Z/result.json",
+        "model_object_sha256": "b3420a45ab1fdd6d89c97001df71943252e536513fd98a1e7eba61a8bd38ccd2",
+        "elf_bytes": 57600,
+        "bit_exact": true
+      },
+      {
+        "variant": "one_no_unroll",
+        "policy": "no_unroll",
+        "cycles": 442948,
+        "receipt": "walkthrough/three_block_optimization/exploration/one_no_unroll/verilator_20261117T123136Z/result.json",
+        "model_object_sha256": "978668d37ad3ad5599270c886578036fe179339c8677af2cc59e7b0b28d0d7a5",
+        "elf_bytes": 49776,
+        "bit_exact": true
+      },
+      {
+        "variant": "one_internalize",
+        "policy": "internalize",
+        "cycles": 361791,
+        "receipt": "walkthrough/three_block_optimization/exploration/one_internalize/verilator_20261117T123638Z/result.json",
+        "model_object_sha256": "f391fa6e97772ed475fbe0f2be1c33d40f27474f6e4f5ccbe5dfafbd570c298c",
+        "elf_bytes": 65376,
+        "bit_exact": true
+      },
+      {
+        "variant": "one_inline_all",
+        "policy": "inline_all",
+        "cycles": 358988,
+        "receipt": "walkthrough/three_block_optimization/exploration/one_inline_all/verilator_20261117T124113Z/result.json",
+        "model_object_sha256": "7dca95f57897deabccf97d0e2e2ffaef4159844fa6db6d587f1a465178c8b845",
+        "elf_bytes": 68936,
+        "bit_exact": true
+      }
+    ],
+    "os_equivalence": "model.o is byte-identical to O2; no extra RTL run",
+    "promoted_default": "inline_all",
+    "promoted_binary_equivalence": {
+      "measured_variant": "walkthrough/three_block_optimization/exploration/one_inline_all",
+      "fresh_default_variant": "walkthrough/three_block_optimization/variants/one_optimized",
+      "identical_files": [
+        {
+          "file": "model.o",
+          "sha256": "7dca95f57897deabccf97d0e2e2ffaef4159844fa6db6d587f1a465178c8b845"
+        },
+        {
+          "file": "main.o",
+          "sha256": "eb5df4381ffc052ba8c8addd0a477906336a876fc525f75d4b80af536d291c70"
+        },
+        {
+          "file": "crt.o",
+          "sha256": "cdd8da5053eb03083276cddb8aaf7f66738ecedab741de1925e56f63c52f6a76"
+        },
+        {
+          "file": "htif.o",
+          "sha256": "1499345c87ef7bc612736981968291390bfe0d2029b01154973b34b9d530788f"
+        },
+        {
+          "file": "libc_min.o",
+          "sha256": "d6385442a37bb3182f9d28019ead24d8dd47a79f748e077bcf93433154f565d7"
+        },
+        {
+          "file": "merlin_malloc.o",
+          "sha256": "51dee7bc346f8b728af6651ae7249adaf3c6220c5f5badb6346cc540d856022a"
+        },
+        {
+          "file": "mlir_runtime.o",
+          "sha256": "fa5694dc7ef4fb85616c51794819b8c23a1b8698eb579eb9fde51c4e56c42bd1"
+        },
+        {
+          "file": "attention_block.elf",
+          "sha256": "f89f3e696ec873aa60669dc678c8390ffbbba9bb2e73296747ff5ad9dcf05af9"
+        },
+        {
+          "file": "main.c",
+          "sha256": "a0f1dfc8f8a19bed35767468173d7153d9b6ed9c59e5a49bd605b630d7e5a536"
+        }
+      ]
+    },
+    "baseline_full_elf_sha256": "e08f3e66ae4a6d362e438bc57ac0ef3f56c920643c6e295758e4c4ba37d9b0e4"
+  },
+  "rejected_stack_promotion": {
+    "status": "rejected_functional_failure",
+    "builder_returncode": 1,
+    "source_variant": "one_contracts_copies",
+    "promotion": "upstream promote-buffers-to-stack; max allocation 4096 bytes; no dynamic ranks",
+    "total_static_allocations_guard": "verified <= 65536 bytes including 64 bytes padding per allocation before probe",
+    "failure": "FATAL: model arena -- invalid free pointer",
+    "reason": "opaque device call returns its destination descriptor; ownership deallocation treats the result as owned, and frees the promoted output allocation",
+    "selected": false,
+    "rtl_run": false
+  },
+  "component_execution": {
+    "passed": true,
+    "engine": "Spike RV64GC functional execution",
+    "cases": 2901,
+    "widths": [
+      8,
+      16,
+      24
+    ],
+    "rounding_modes": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "comparisons": 43515,
+    "oracle": "original runtime roundevenf, ordered clamps and signed conversion; NaN source poison excluded",
+    "elf_sha256": "d988735c5bfe2cf3b6f9362e3a3fc96d3ec7f1c77aae4b3aa743cca861a488ae",
+    "implementation_sha256": "10f05db92b890d8cbe6b5699d05f56a63d81153751d343bc91cf3bf8cbcabde6"
+  },
+  "semantic_checks": {
+    "source_sharing": 8,
+    "source_clustering": 8,
+    "shared_transfers_readout": 7,
+    "bounded_quantization": 19,
+    "host_contracts": 7,
+    "static_copies": 8,
+    "native_helpers": 10,
+    "total": 67
+  },
+  "changed_compiler_files_from_frozen": [
+    {
+      "path": "backend/host_contracts.py",
+      "sha256": "24ca721befcf2374ed88498a63187abd5f6e617c3f8c80c8d4dc23f486616836",
+      "bytes": 2828
+    },
+    {
+      "path": "backend/host_copies.py",
+      "sha256": "df325df21f9553d002f146d1f0e65a850c2d499e5640099fe82d50af7d3a0234",
+      "bytes": 4043
+    },
+    {
+      "path": "backend/host_quant_rne.py",
+      "sha256": "10f05db92b890d8cbe6b5699d05f56a63d81153751d343bc91cf3bf8cbcabde6",
+      "bytes": 6951
+    },
+    {
+      "path": "backend/host_runtime.py",
+      "sha256": "4f56234763d7b71b7ef8e2276ec57665fddc810fac058d4e5c3cc650a9339239",
+      "bytes": 44688
+    },
+    {
+      "path": "backend/host_runtime_worker.py",
+      "sha256": "5243433de68fd6b4ef3fd649065d9aab376253b06f747145146d155bb3f49839",
+      "bytes": 2506
+    },
+    {
+      "path": "backend/native_helpers.py",
+      "sha256": "c52dec5d85e1e0380800ffb197474880b5ac010c23879334dfa362a62a3677cd",
+      "bytes": 2907
+    },
+    {
+      "path": "backend/optimization.py",
+      "sha256": "764c4b83bad978cde4e6e84e13400f4647b9a44436d142c7129300bb2309244e",
+      "bytes": 1709
+    },
+    {
+      "path": "backend/program.py",
+      "sha256": "a7eaa8468890a13a5dd8db2d9d67314ab57e47fb444bd55719427af6621facf2",
+      "bytes": 7203
+    },
+    {
+      "path": "backend/shared_products.py",
+      "sha256": "acabaeccd6d3c97d04f3fe2d5dd9568982c4c4e4e5e0cd1ec8e68205019bca06",
+      "bytes": 25914
+    },
+    {
+      "path": "backend/shared_rhs_transfers.py",
+      "sha256": "e9274a063fb1bd97821a1fff5e5ff5120c8cc2264b763155d0e0cbc4a0515768",
+      "bytes": 7802
+    },
+    {
+      "path": "backend/source_clusters.py",
+      "sha256": "eab98629c904c92c74be96e4f884b61878f694778b089ac27f7f68089fa40dd7",
+      "bytes": 5641
+    },
+    {
+      "path": "backend/source_cse.py",
+      "sha256": "30190f2b9840509a2ae063510616c7b21937b627f769c2c925279032bab9fdbe",
+      "bytes": 5884
+    },
+    {
+      "path": "compiler_library/merlin/llvmlower/stock_cli.py",
+      "sha256": "a46014efda954cf332e5a06f5763a6f81ee12f67d3c6441b9d47a282b9d52567",
+      "bytes": 7982
+    },
+    {
+      "path": "optimization.json",
+      "sha256": "c587faeeda803b936b747567197a09e801f545ca5615520cb2472bec385571a4",
+      "bytes": 449
+    }
+  ],
+  "inventory": "walkthrough/three_block_optimization/final_compiler_inventory.json",
+  "binary_equivalence": {
+    "schema": "gemmini.final_binary_equivalence.v1",
+    "checks": [
+      {
+        "measured_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_cluster_optimized",
+        "final_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_release",
+        "compiler_commit_of_final_build": "274f251629019e341719f9fc7eb98ff00003f956",
+        "identical_build_products": [
+          {
+            "file": "model.o",
+            "sha256": "8c793f2a0c5473a72f4c029980684cc536296b23c819e62ec67f3edd5f95d8f1"
+          },
+          {
+            "file": "main.o",
+            "sha256": "eb5df4381ffc052ba8c8addd0a477906336a876fc525f75d4b80af536d291c70"
+          },
+          {
+            "file": "crt.o",
+            "sha256": "cdd8da5053eb03083276cddb8aaf7f66738ecedab741de1925e56f63c52f6a76"
+          },
+          {
+            "file": "htif.o",
+            "sha256": "1499345c87ef7bc612736981968291390bfe0d2029b01154973b34b9d530788f"
+          },
+          {
+            "file": "libc_min.o",
+            "sha256": "d6385442a37bb3182f9d28019ead24d8dd47a79f748e077bcf93433154f565d7"
+          },
+          {
+            "file": "merlin_malloc.o",
+            "sha256": "51dee7bc346f8b728af6651ae7249adaf3c6220c5f5badb6346cc540d856022a"
+          },
+          {
+            "file": "mlir_runtime.o",
+            "sha256": "fa5694dc7ef4fb85616c51794819b8c23a1b8698eb579eb9fde51c4e56c42bd1"
+          },
+          {
+            "file": "attention_block.elf",
+            "sha256": "25299129efd57b49c57954ea21a60e177297a5f50638f1d8e33046c7207a731a"
+          },
+          {
+            "file": "main.c",
+            "sha256": "a0f1dfc8f8a19bed35767468173d7153d9b6ed9c59e5a49bd605b630d7e5a536"
+          }
+        ],
+        "capture_files_identical": true,
+        "receipt": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_cluster_optimized/verilator_20261117T125906Z/result.json",
+        "additional_rtl_sample": false
+      },
+      {
+        "measured_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_cluster_optimized",
+        "final_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_release",
+        "compiler_commit_of_final_build": "274f251629019e341719f9fc7eb98ff00003f956",
+        "identical_build_products": [
+          {
+            "file": "model.o",
+            "sha256": "3f62a4afaca05c8608642941df9b5d2bd33d0ab8a2e6325555a02e0ad91a8faf"
+          },
+          {
+            "file": "main.o",
+            "sha256": "af561877ce0c73a98900eb6b730cdcaef65e9a32e59838afe17b5583394ab743"
+          },
+          {
+            "file": "crt.o",
+            "sha256": "cdd8da5053eb03083276cddb8aaf7f66738ecedab741de1925e56f63c52f6a76"
+          },
+          {
+            "file": "htif.o",
+            "sha256": "1499345c87ef7bc612736981968291390bfe0d2029b01154973b34b9d530788f"
+          },
+          {
+            "file": "libc_min.o",
+            "sha256": "d6385442a37bb3182f9d28019ead24d8dd47a79f748e077bcf93433154f565d7"
+          },
+          {
+            "file": "merlin_malloc.o",
+            "sha256": "51dee7bc346f8b728af6651ae7249adaf3c6220c5f5badb6346cc540d856022a"
+          },
+          {
+            "file": "mlir_runtime.o",
+            "sha256": "fa5694dc7ef4fb85616c51794819b8c23a1b8698eb579eb9fde51c4e56c42bd1"
+          },
+          {
+            "file": "attention_block.elf",
+            "sha256": "658a62f30599ada4d2398f8f28cfc8a0af90d26c26e3151d7eaec488e0c114e1"
+          },
+          {
+            "file": "main.c",
+            "sha256": "cfdd9bce9d5ab709b976c7aae606dad18b842b3f9bf6fae5450044377508728c"
+          }
+        ],
+        "capture_files_identical": true,
+        "receipt": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_cluster_optimized/verilator_20261117T131948Z/result.json",
+        "additional_rtl_sample": false
+      },
+      {
+        "measured_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/two_full_grouped",
+        "final_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/two_release",
+        "compiler_commit_of_final_build": "274f251629019e341719f9fc7eb98ff00003f956",
+        "identical_build_products": [
+          {
+            "file": "model.o",
+            "sha256": "0e59bc45ea470d3ff571f935d3aa3b654935865f4aa860dc2a895ae54b02c005"
+          },
+          {
+            "file": "main.o",
+            "sha256": "32de53e052dee2b418a7f37b84fb26a50636aea96d45bd431671f6520fcf05a0"
+          },
+          {
+            "file": "crt.o",
+            "sha256": "cdd8da5053eb03083276cddb8aaf7f66738ecedab741de1925e56f63c52f6a76"
+          },
+          {
+            "file": "htif.o",
+            "sha256": "1499345c87ef7bc612736981968291390bfe0d2029b01154973b34b9d530788f"
+          },
+          {
+            "file": "libc_min.o",
+            "sha256": "d6385442a37bb3182f9d28019ead24d8dd47a79f748e077bcf93433154f565d7"
+          },
+          {
+            "file": "merlin_malloc.o",
+            "sha256": "51dee7bc346f8b728af6651ae7249adaf3c6220c5f5badb6346cc540d856022a"
+          },
+          {
+            "file": "mlir_runtime.o",
+            "sha256": "fa5694dc7ef4fb85616c51794819b8c23a1b8698eb579eb9fde51c4e56c42bd1"
+          },
+          {
+            "file": "attention_block.elf",
+            "sha256": "40316a26975d307b07f638e44859ff58ce92544ee7df95e41129005301bd7f9c"
+          },
+          {
+            "file": "main.c",
+            "sha256": "87658d4b210e01c5e5ff86ba1cb396ddc4d3300342eb884befaf713be33e59a8"
+          }
+        ],
+        "capture_files_identical": true,
+        "receipt": null,
+        "additional_rtl_sample": false
+      },
+      {
+        "measured_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/nearby_full_grouped",
+        "final_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/nearby_release",
+        "compiler_commit_of_final_build": "274f251629019e341719f9fc7eb98ff00003f956",
+        "identical_build_products": [
+          {
+            "file": "model.o",
+            "sha256": "b3cb0198ef42c6c2729ba2573144466df3b95ce8a5fb4a8b8d39e5cc45c1da46"
+          },
+          {
+            "file": "main.o",
+            "sha256": "8ca97355ff054d00afec3bb2ed21e8c1129ef1da3ae37728959c85951e12dbaa"
+          },
+          {
+            "file": "crt.o",
+            "sha256": "cdd8da5053eb03083276cddb8aaf7f66738ecedab741de1925e56f63c52f6a76"
+          },
+          {
+            "file": "htif.o",
+            "sha256": "1499345c87ef7bc612736981968291390bfe0d2029b01154973b34b9d530788f"
+          },
+          {
+            "file": "libc_min.o",
+            "sha256": "d6385442a37bb3182f9d28019ead24d8dd47a79f748e077bcf93433154f565d7"
+          },
+          {
+            "file": "merlin_malloc.o",
+            "sha256": "51dee7bc346f8b728af6651ae7249adaf3c6220c5f5badb6346cc540d856022a"
+          },
+          {
+            "file": "mlir_runtime.o",
+            "sha256": "fa5694dc7ef4fb85616c51794819b8c23a1b8698eb579eb9fde51c4e56c42bd1"
+          },
+          {
+            "file": "attention_block.elf",
+            "sha256": "6c1911e1cbdf09c7a8057d064675b4efe7f3d966e8901fa1f6469796a933e1de"
+          },
+          {
+            "file": "main.c",
+            "sha256": "99833bf55f8d68b2d3581774dc6f7602a1655ceed29cedfa7aa644ca93933581"
+          }
+        ],
+        "capture_files_identical": true,
+        "receipt": null,
+        "additional_rtl_sample": false
+      }
+    ]
+  },
+  "simulator_sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7",
+  "measurement_scope": "complete kernel_entry mcycle; cold first invocation; boot/reset/output excluded; one accepted run per arm; magic memory",
+  "toolchain_adaptation": "standalone opt is absent; compile emitted combined LLVM with Clang O3, scalar RV64GC/lp64d, FP contraction and vectorization disabled",
+  "archive_scope": "original compiler and paper metrics preserved; original full construction suite not rerun"
+}

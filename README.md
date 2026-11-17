@@ -1,32 +1,43 @@
-# Merlin refinement with Exo kernels
+# Optimized Merlin compiler for Gemmini
 
+This branch develops a general compiler for mixed host/Gemmini execution from the archived Merlin-generated backend. It adds graph-wide tensor sharing, bounded scalar quantization lowering, allocation-aware host optimization, static strided-copy lowering, and measured helper inlining. The experiments compile complete quantized Llama-style decoder blocks from PyTorch to bare-metal RISC-V executables and validate them on an existing Gemmini RTL simulator.
 
-This branch preserves the exact compiler submission used by experiment `CCA-EXO-R3`. It is an archival experiment version, with its original source under `compiler/` and its setup and results under `experiment/`.
+The optimized compiler is in [`compiler_optimized/`](compiler_optimized/). The original [`compiler/`](compiler/) is preserved unchanged.
 
-| Item | Record |
-|---|---|
-| Experiment branch | `paper/refinement/exo-kernels-4plus4h` |
-| Original run | `/work/merlin/tasks/el4-grader-throughput-20261024/merlin/out/runs/gemmini/phase1/cca-coverage-20261029-cca-exo-r3` |
-| Source digest | `4994f7b478047decf473e8263f6246b493f5189f0fbfef70b921ba8f99b012f7` |
-| Source files | 1251 |
-| Paper revision | `24181ce016544dac2742825dbc401230ebb85100` |
+Read the [optimization report](OPTIMIZATION_REPORT.md) for the full PyTorch-to-ELF walkthrough, stage ownership, group boundaries, transformation predicates, profiling, ablations, rejected candidates and reproduction instructions.
 
-Start with [the manifest](experiment/manifest.json), [experimental setup](experiment/setup.json), and [recorded metrics](experiment/metrics.json). The [measurement records](experiment/measurement-records.csv) retain image and cache-profile identities. [Selected master rows](experiment/selected-master-records.csv) preserve the original panel selection where it exists. Rows from different images are not silently pooled.
+| Workload | Prior optimized checkpoint | Final default | Fewer cycles |
+|---|---:|---:|---:|
+| One complete decoder block | 537,032 | **357,674** | **33.4%** |
+| Three sequential decoder blocks | 1,639,267 | **1,060,118** | **35.3%** |
 
-Verify the compiler bytes without executing it:
+All final outputs are bit-exact to the supplied quantized PyTorch references. These are complete-entry RTL cycle measurements, including host and device work. The default was selected from a grouping/inlining sweep on the three-block chain. An alternative inlining policy reaches 356,696 cycles for one block; the default is faster on three.
 
-```sh
+A block has seven logical projections: Q, K, V, O, gate, up and down. The default clusters them into **four physical device groups**: Q/K/V, O, gate/up, and down. Three sequential blocks have **12 device calls**, four reused kernel bodies, and 21 distinct projection weights. Normalization, RoPE, FP32 attention, softmax, SiLU and residuals run on the scalar host. The compiler shares equivalent preparation across those boundaries while preserving the dependencies between blocks.
+
+The reference uses explicit W8A8 linears, FP32 host arithmetic and deterministic demonstration weights. Reported output equality is against that quantized PyTorch model. The measurements use the same unchanged GemminiRocketConfig Verilator binary with magic memory; they are not FPGA measurements.
+
+## Build and inspect
+
+The checked-in captures and scripts use the existing model2MLIR, Merlin, LLVM, RISC-V runtime and simulator installations on a26. From this checkout:
+
+```bash
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 \
+  /scratch/grammy/blast/model2MLIR/.venv/bin/python \
+  walkthrough/three_block_optimization/reproduce.py \
+  --name three_repeat --blocks 3
+```
+
+This builds the complete executable, checks device re-emission, compares all final outputs in Spike, and exports intermediate stages. Choose a fresh name. Add `--rtl` to run the bounded simulator, or follow the report's command to pin it to a chosen CPU. The original standalone `opt` binary is absent locally; these scripts compile the emitted combined LLVM with Clang. The report describes that adaptation explicitly.
+
+Defaults and ablation switches are in [`optimization.json`](compiler_optimized/optimization.json) and [`optimization.py`](compiler_optimized/backend/optimization.py). Compact captures, results, logs and reproduction scripts are versioned; large generated build trees stay local. [`final_report.json`](walkthrough/three_block_optimization/final_report.json) binds the final measurements and binaries.
+
+## Archived paper compiler
+
+The starting point is upstream branch `paper/refinement/exo-kernels-4plus4h`, archived experiment `CCA-EXO-R3`, at commit `7cd030e13360fd0961bd83fa288bd9009ba813df`. Its source digest is `4994f7b478047decf473e8263f6246b493f5189f0fbfef70b921ba8f99b012f7`, covering 1,251 original compiler files. Verify it with:
+
+```bash
 python3 experiment/verify_snapshot.py
 ```
 
-The original `compiler/manifest.yaml` declares the compiler entrypoints. Shared imported code shipped within the frozen compiler is retained because it is part of the measured source identity. Additional captured generic-library dependencies, when available, are under `dependencies/`. The manifest pins the remaining evaluator and toolchain records. Reconstruction of a full execution environment remains part of the artifact package.
-
-The archived measurements are historical observations. No compiler, agent, simulator or FPGA experiment was rerun to prepare this branch. Construction-suite completion and the frozen 89-case kernel panel have different scopes. Read the setup and per-record statuses before interpreting an aggregate.
-
-## Run identity
-
-Original result ID: `CCA-EXO-R3`. Permanent measured-snapshot tag: `mlsys-paper-v1/refinement/exo-kernels-4plus4h`. This branch adds navigation metadata to that snapshot. Compiler and dependency trees and all saved measurements are unchanged. The tag retains the original complete commit.
-
-Names containing `4plus4h` mean four hours of seed construction followed by four additional hours of refinement. A `30min` suffix is the local study budget after its existing seed, not the cost of constructing the seed.
-
-See [the experiment index](https://github.com/ucb-bar/gemmini-mlir/tree/paper/index) for all original run IDs, paths, commits and source digests.
+The [manifest](experiment/manifest.json), [experimental setup](experiment/setup.json), [recorded metrics](experiment/metrics.json), and [measurement records](experiment/measurement-records.csv) describe the historical paper experiment. Those measurements remain separate from the new transformer runs under `walkthrough/`. The original archive README is available at the [starting commit](https://github.com/ucb-bar/gemmini-mlir/blob/7cd030e13360fd0961bd83fa288bd9009ba813df/README.md).
