@@ -1,0 +1,9 @@
+{
+  "quantized_weights": 21,
+  "distinct_quantized_weights": 21,
+  "per_block_output_sha256": [
+    "f14d2ca2e2527c754911c242b1d07547a9fb4c6122ee746a36524b391e3cf205",
+    "bd30b83fc1dd4f8dd4ca6df0b803c06d94e727253425dbab47cefa9a27d10f12",
+    "7848cca7940c4b7c4c0b3e74d7eef46c6dcb63a500545c23edf639029f13888e"
+  ]
+}

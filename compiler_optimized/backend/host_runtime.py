@@ -520,6 +520,16 @@ def materialize_combined_llvm_dialect(
             raise WholeProgramError('single-module materialization needs LLVM device artifacts')
     linked = work / 'combined.ll'
     run([selected_install / 'bin' / 'llvm-link', '-S', *llvm_inputs, '-o', linked])
+    from .optimization import settings
+    if settings()['scalar_quant_rne']:
+        from .host_quant_rne import rewrite
+        original_native = linked.read_text()
+        selected_native, receipt = rewrite(original_native, result.routed_source.read_text(),
+            host_isa='rv64gc' if '-march=rv64gc' in cflags and '-mabi=lp64d' in cflags else 'unsupported')
+        (work/'before-scalar-quant-rne.ll').write_text(original_native)
+        linked.write_text(selected_native)
+        receipt['implementation_sha256'] = hashlib.sha256(Path(__file__).with_name('host_quant_rne.py').read_bytes()).hexdigest()
+        (work/'scalar-quant-rne.json').write_text(json.dumps(receipt,indent=2))
     target = Path(output) if output is not None else work / 'combined.mlir'
     # Whole-program artifacts expose one executable entry. Inline the exact
     # linked helpers, retaining external runtime declarations as such.

@@ -1,0 +1,21 @@
+{
+  "checkpoint": "969ce4377f7e5a8f06ef5cd5b774f867570b1a97",
+  "rne_disabled_reproduces_checkpoint": [
+    {
+      "artifact": "combined.ll",
+      "sha256": "c12d12d9ed360b6d16ecb7907a0a659ff43663ecf252edd031377d7d536c145c",
+      "identical": true
+    },
+    {
+      "artifact": "model.o",
+      "sha256": "6c039aa2f0bd687e434908cdbe96d3594518ee72b1d7e17d13b4238330081c8e",
+      "identical": true
+    },
+    {
+      "artifact": "attention_block.elf",
+      "sha256": "423c5fd025eb5a248e3690add412516736591fc92cd0b0707a4a60ccc4e7394d",
+      "identical": true
+    }
+  ],
+  "one_block_rne_off_matches_previous_best_elf": "47e18b15f4424c53181036c6e770b77d15e89d3d5a41b0f39b8389efc3987a8b"
+}

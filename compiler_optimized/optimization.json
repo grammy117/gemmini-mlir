@@ -6,5 +6,6 @@
   "literal_shared_epochs": true,
   "shared_readout_epochs": true,
   "generalize_before_fusion": true,
+  "scalar_quant_rne": true,
   "native_optimization_level": 3
 }

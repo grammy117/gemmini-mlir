@@ -14,3 +14,5 @@ __pycache__/
 /walkthrough/**/verilator_*/actual.npy
 /walkthrough/**/verilator_*/main.c
 /walkthrough/**/verilator_*/one_host_thread.c
+/walkthrough/three_block_optimization/baseline/
+/walkthrough/three_block_optimization/rne_probe.*

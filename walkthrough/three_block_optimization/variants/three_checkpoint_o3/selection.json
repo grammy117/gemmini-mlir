@@ -1,0 +1,10 @@
+{
+  "name": "three_checkpoint_o3",
+  "compiler": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/baseline/compiler_optimized",
+  "capture": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/capture",
+  "scalar_codegen_level": 3,
+  "source_cse": null,
+  "fusion": null,
+  "groups": null,
+  "environment": {}
+}

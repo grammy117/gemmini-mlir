@@ -1,0 +1,234 @@
+{
+  "schema": "gemmini.three_decoder_block_optimization.v1",
+  "branch": "work/transformer-intergroup-3block",
+  "checkpoint_commit": "969ce4377f7e5a8f06ef5cd5b774f867570b1a97",
+  "scope": "one, two and three complete sequential decoder blocks; distinct per-block weights",
+  "shape_per_block": {
+    "batch": 1,
+    "tokens": 8,
+    "model_width": 32,
+    "heads": 2,
+    "head_width": 16,
+    "mlp_width": 64
+  },
+  "chain_identity": {
+    "quantized_weights": 21,
+    "distinct_quantized_weights": 21,
+    "per_block_output_sha256": [
+      "f14d2ca2e2527c754911c242b1d07547a9fb4c6122ee746a36524b391e3cf205",
+      "bd30b83fc1dd4f8dd4ca6df0b803c06d94e727253425dbab47cefa9a27d10f12",
+      "7848cca7940c4b7c4c0b3e74d7eef46c6dcb63a500545c23edf639029f13888e"
+    ]
+  },
+  "settings": {
+    "schema": "gemmini.general_optimizations.v1",
+    "pure_tensor_cse": true,
+    "cluster_shared_products": false,
+    "wide_shared_rhs": true,
+    "literal_shared_epochs": true,
+    "shared_readout_epochs": true,
+    "generalize_before_fusion": true,
+    "scalar_quant_rne": true,
+    "native_optimization_level": 3
+  },
+  "compiler_changes_since_checkpoint": [
+    {
+      "path": "backend/host_quant_rne.py",
+      "sha256": "9ba10e5ae550b441172dc7c5e194cf7e8a4796f42b2addb47c7a001333ed450d"
+    },
+    {
+      "path": "backend/host_runtime.py",
+      "sha256": "ede7ef12a0866e88570ac7bd40e336ccc087fde21e9c31f7df02686c6ced120a"
+    },
+    {
+      "path": "backend/optimization.py",
+      "sha256": "beb264941f907ad38f392bccb2fbc4fd722d8f6f37dc36869e8561e2df48b426"
+    },
+    {
+      "path": "optimization.json",
+      "sha256": "51a365ccb7f5036d98a959eb50451ba58695c46e43afa7c13774760d209c49be"
+    }
+  ],
+  "measurements": {
+    "1": {
+      "blocks": 1,
+      "device_groups": 7,
+      "before": {
+        "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_host_only_o3/verilator_20261117T095456Z/result.json",
+        "cycles": 537032,
+        "wall_seconds": 303.4393872329965,
+        "exact_bits": true,
+        "elements": 256,
+        "simulator_sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7",
+        "elf": {
+          "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/attention_optimization/variants/block_host_only_o3/verilator_20261117T095456Z/attention_block.elf",
+          "bytes": 70528,
+          "sha256": "0750834fa5a262a38e6275a8821a839ceba447e849e0c35c5aabdd8bd97febd9"
+        }
+      },
+      "after": {
+        "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_rne_final/verilator_20261117T111731Z/result.json",
+        "cycles": 483977,
+        "wall_seconds": 310.82753830961883,
+        "exact_bits": true,
+        "elements": 256,
+        "simulator_sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7",
+        "elf": {
+          "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_rne_final/verilator_20261117T111731Z/attention_block.elf",
+          "bytes": 66376,
+          "sha256": "a5d348486d4ef16dbd9d3a892739b7edea4f6db89214ce2ae254516ad2ee34bb"
+        }
+      },
+      "cycles_saved": 53055,
+      "cycle_reduction": 0.09879299557568266,
+      "speedup": 1.1096229779514315
+    },
+    "3": {
+      "blocks": 3,
+      "device_groups": 21,
+      "before": {
+        "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_checkpoint_o3/verilator_20261117T105109Z/result.json",
+        "cycles": 1639267,
+        "wall_seconds": 833.7753919837996,
+        "exact_bits": true,
+        "elements": 256,
+        "simulator_sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7",
+        "elf": {
+          "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_checkpoint_o3/verilator_20261117T105109Z/attention_block.elf",
+          "bytes": 155816,
+          "sha256": "163015ffe4e64610bc3fee4e45417cb8fa5a267c9a844decb27715e18c7252a8"
+        }
+      },
+      "after": {
+        "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final/verilator_20261117T110518Z/result.json",
+        "cycles": 1449383,
+        "wall_seconds": 673.1203911178745,
+        "exact_bits": true,
+        "elements": 256,
+        "simulator_sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7",
+        "elf": {
+          "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final/verilator_20261117T110518Z/attention_block.elf",
+          "bytes": 151664,
+          "sha256": "8a640b3c4eb85ed11ab49b9eee1ecc9a1ae7588d21b27c2bf8a5462e03252c7f"
+        }
+      },
+      "cycles_saved": 189884,
+      "cycle_reduction": 0.11583469928937751,
+      "speedup": 1.1310102298702276
+    }
+  },
+  "functional_checks": [
+    {
+      "name": "one_rne_final",
+      "exact_bits": true,
+      "elements": 256,
+      "device_groups": 7,
+      "rewritten_scalar_sites": 4,
+      "elf_bytes": 66296,
+      "receipt": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_rne_final/fresh10-authored-compiler/d69f0c03908da261f112513ef37fbb2b3bcfe6ee2b65831cf73ef83acf25bc96/mixed/combined/scalar-quant-rne.json"
+    },
+    {
+      "name": "two_rne_final",
+      "exact_bits": true,
+      "elements": 256,
+      "device_groups": 14,
+      "rewritten_scalar_sites": 8,
+      "elf_bytes": 111016,
+      "receipt": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/two_rne_final/fresh10-authored-compiler/c5a32e85c5ee887ee012891751512993a15817b76781248dc6de604e0a366079/mixed/combined/scalar-quant-rne.json"
+    },
+    {
+      "name": "three_rne_final",
+      "exact_bits": true,
+      "elements": 256,
+      "device_groups": 21,
+      "rewritten_scalar_sites": 12,
+      "elf_bytes": 151584,
+      "receipt": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final/fresh10-authored-compiler/aa251a6392bf6be8cdeef4611fadbfbdcfbf3eb292d9a31fc51f8252cc8a3210/mixed/combined/scalar-quant-rne.json"
+    },
+    {
+      "name": "nearby_rne_final",
+      "exact_bits": true,
+      "elements": 240,
+      "device_groups": 7,
+      "rewritten_scalar_sites": 4,
+      "elf_bytes": 76856,
+      "receipt": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/nearby_rne_final/fresh10-authored-compiler/a7bdc4cae6c53506003df84111b7aeb4873a205fa3d0a54b10178bdb8ba120ec/mixed/combined/scalar-quant-rne.json"
+    }
+  ],
+  "source_cse_three_blocks": {
+    "schema": "optimized.pure_tensor_cse.v1",
+    "rewrites": {
+      "arith.constant": 106,
+      "linalg.generic": 100,
+      "tensor.collapse_shape": 9,
+      "tensor.expand_shape": 24,
+      "tensor.splat": 92
+    },
+    "source_sha256": "ea4b9bfc8af8700e24b494f0f109abc2fce27a842eb5237fa4a19866069a28ed",
+    "output_sha256": "0fcab6e2bfe57c54db87005162a8d44b1269ae900c0951bf38c3c708b5fcee44"
+  },
+  "ablation_identity": {
+    "checkpoint": "969ce4377f7e5a8f06ef5cd5b774f867570b1a97",
+    "rne_disabled_reproduces_checkpoint": [
+      {
+        "artifact": "combined.ll",
+        "sha256": "c12d12d9ed360b6d16ecb7907a0a659ff43663ecf252edd031377d7d536c145c",
+        "identical": true
+      },
+      {
+        "artifact": "model.o",
+        "sha256": "6c039aa2f0bd687e434908cdbe96d3594518ee72b1d7e17d13b4238330081c8e",
+        "identical": true
+      },
+      {
+        "artifact": "attention_block.elf",
+        "sha256": "423c5fd025eb5a248e3690add412516736591fc92cd0b0707a4a60ccc4e7394d",
+        "identical": true
+      }
+    ],
+    "one_block_rne_off_matches_previous_best_elf": "47e18b15f4424c53181036c6e770b77d15e89d3d5a41b0f39b8389efc3987a8b"
+  },
+  "boundary_execution": {
+    "passed": true,
+    "engine": "Spike RV64GC functional execution",
+    "cases": 2901,
+    "widths": [
+      8,
+      16,
+      24
+    ],
+    "rounding_modes": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "comparisons": 43515,
+    "oracle": "original runtime roundevenf, ordered clamps and signed conversion; NaN source poison excluded",
+    "elf_sha256": "d988735c5bfe2cf3b6f9362e3a3fc96d3ec7f1c77aae4b3aa743cca861a488ae",
+    "implementation_sha256": "9ba10e5ae550b441172dc7c5e194cf7e8a4796f42b2addb47c7a001333ed450d"
+  },
+  "semantic_checks": {
+    "bounded_rne": 19,
+    "source_cse": 8,
+    "source_clustering": 8,
+    "transfers_and_readout": 7
+  },
+  "stages_index": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages_index.json",
+  "transformation": "closed f32 round-to-even, complete integral ordered clamps and signed conversion -> bounded RV64GC fmax/fmin/fcvt with explicit RNE",
+  "refusals": [
+    "strict FP/fenv",
+    "extra intermediate observers",
+    "unknown round callee",
+    "source-owned runtime symbol",
+    "unsupported CPU or float/integer type",
+    "unproved clamp bounds",
+    "unrecognized flags or scalar syntax"
+  ],
+  "measurement_scope": "mcycle around complete kernel_entry; includes host and Gemmini; boot, reset and output excluded; single cold RTL run per arm",
+  "simulator": "existing unchanged GemminiRocketConfig Verilator binary, magic memory, one host CPU core, 30-minute wall limit per run",
+  "toolchain": "same emitted-LLVM -> Clang -O3 RV64GC/lp64d path in all arms; contraction and vectorization disabled; local opt remains absent",
+  "numerics": "bit-exact to seeded quantized PyTorch; W8A8 linears, host FP32 attention/norms/residuals/SiLU; no trained checkpoint",
+  "reproduce": "/scratch/grammy/blast/model2MLIR/.venv/bin/python /scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/reproduce.py --name three_repeat --blocks 3 --rtl"
+}

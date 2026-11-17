@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--cse',type=int,choices=(0,1))
     parser.add_argument('--fusion',type=int,choices=(0,1))
     parser.add_argument('--groups',type=int,choices=(0,1))
+    parser.add_argument('--rne',type=int,choices=(0,1))
     parser.add_argument('--output-root',type=Path,default=Path(__file__).resolve().parent/'variants')
     args=parser.parse_args()
     if '/' in args.name or args.name in ('.','..'):raise ValueError('name must be a single fresh directory component')
@@ -64,10 +65,11 @@ def main():
             source=source.replace('all 256 float32 outputs',f'all {output_elements} float32 outputs')
         (out/name).write_text(source)
     env=dict(os.environ,OMP_NUM_THREADS='2',MKL_NUM_THREADS='2',OPENBLAS_NUM_THREADS='2',PYTHONDONTWRITEBYTECODE='1')
-    for name,value in [('GEMMINI_OPT_SOURCE_CSE',args.cse),('GEMMINI_OPT_FUSION',args.fusion),('GEMMINI_OPT_GROUPS',args.groups)]:
+    for name,value in [('GEMMINI_OPT_SOURCE_CSE',args.cse),('GEMMINI_OPT_FUSION',args.fusion),('GEMMINI_OPT_GROUPS',args.groups),('GEMMINI_OPT_RNE',args.rne)]:
         if value is not None:env[name]=str(value)
     selection={'name':args.name,'compiler':str(compiler),'capture':str(args.capture.resolve()),
-               'scalar_codegen_level':opt,'source_cse':args.cse,'fusion':args.fusion,'groups':args.groups,
+               'scalar_codegen_level':opt,'source_cse':args.cse,'fusion':args.fusion,'groups':args.groups,'rne':args.rne,
+               'compiler_settings':json.loads(config.read_text()) if config.exists() else None,
                'environment':{k:v for k,v in env.items() if k.startswith('GEMMINI_OPT_')}}
     (out/'selection.json').write_text(json.dumps(selection,indent=2))
     for name in ['build.py','run.py']:

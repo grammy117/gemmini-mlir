@@ -56,6 +56,15 @@ def execute(argv, env, log, seconds):
             except subprocess.TimeoutExpired:
                 os.killpg(child.pid,signal.SIGKILL)
                 code=child.wait()
+        except BaseException:
+            # The child owns a separate session; clean it up on interruption.
+            if child.poll() is None:
+                os.killpg(child.pid,signal.SIGTERM)
+                try:child.wait(timeout=3)
+                except subprocess.TimeoutExpired:
+                    os.killpg(child.pid,signal.SIGKILL)
+                    child.wait()
+            raise
     return {'argv':list(map(str,argv)),'returncode':code,'timed_out':timed_out,
             'wall_seconds':time.monotonic()-start,'log':identity(log)}
 

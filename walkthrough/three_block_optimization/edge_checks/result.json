@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "engine": "Spike RV64GC functional execution",
+  "cases": 2901,
+  "widths": [
+    8,
+    16,
+    24
+  ],
+  "rounding_modes": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "comparisons": 43515,
+  "oracle": "original runtime roundevenf, ordered clamps and signed conversion; NaN source poison excluded",
+  "elf_sha256": "d988735c5bfe2cf3b6f9362e3a3fc96d3ec7f1c77aae4b3aa743cca861a488ae",
+  "implementation_sha256": "9ba10e5ae550b441172dc7c5e194cf7e8a4796f42b2addb47c7a001333ed450d",
+  "routes": [
+    {
+      "schema": "gemmini.scalar_bounded_quant_rne.v1",
+      "routes": [
+        {
+          "integer_dtype": "i8",
+          "bounds": [
+            -128,
+            127
+          ],
+          "source_form": "owned roundevenf -> ordered compare/select clamp -> fptosi",
+          "closed_intermediates": 5,
+          "rounding": "explicit RNE"
+        }
+      ],
+      "source_sha256": "7d7c9098187e3d0224633c77d514e0d03b4280f01f6040128714b80aba2a5e7e",
+      "routed_source_sha256": "63d1bf478935174cc9814b51cc1ce07d3f13edfa4cdb375f8286dc4da6c88b84",
+      "host_isa": "rv64gc",
+      "refusals": {},
+      "contract": "defined scalar f32-to-signed-int results; explicit ties-even; NaN fptosi is poison",
+      "output_sha256": "1d416d88f733ceb4d19dcf2bc1cec5829def30f20b92d5b04492aacad6587067"
+    },
+    {
+      "schema": "gemmini.scalar_bounded_quant_rne.v1",
+      "routes": [
+        {
+          "integer_dtype": "i16",
+          "bounds": [
+            -32768,
+            32767
+          ],
+          "source_form": "owned roundevenf -> ordered compare/select clamp -> fptosi",
+          "closed_intermediates": 5,
+          "rounding": "explicit RNE"
+        }
+      ],
+      "source_sha256": "7ebcd71e9b0c2c71176f4d24a1612adcabdaacd9769b5aec9c458be2f47c44ba",
+      "routed_source_sha256": "63d1bf478935174cc9814b51cc1ce07d3f13edfa4cdb375f8286dc4da6c88b84",
+      "host_isa": "rv64gc",
+      "refusals": {},
+      "contract": "defined scalar f32-to-signed-int results; explicit ties-even; NaN fptosi is poison",
+      "output_sha256": "01060680810e8b06a191b8a7c7f557ab9f93129031ef2f108f3ee39e6c7fd498"
+    },
+    {
+      "schema": "gemmini.scalar_bounded_quant_rne.v1",
+      "routes": [
+        {
+          "integer_dtype": "i24",
+          "bounds": [
+            -8388608,
+            8388607
+          ],
+          "source_form": "owned roundevenf -> ordered compare/select clamp -> fptosi",
+          "closed_intermediates": 5,
+          "rounding": "explicit RNE"
+        }
+      ],
+      "source_sha256": "85b8afaeeb9e07951f52b65c692eead016ad38252a7f85c3dd7f816d7bed3edf",
+      "routed_source_sha256": "63d1bf478935174cc9814b51cc1ce07d3f13edfa4cdb375f8286dc4da6c88b84",
+      "host_isa": "rv64gc",
+      "refusals": {},
+      "contract": "defined scalar f32-to-signed-int results; explicit ties-even; NaN fptosi is poison",
+      "output_sha256": "fa083cc3821389d1865c6e4cf0441ecd779bcb8f0a21092cb56b5e4db4c11d82"
+    }
+  ]
+}

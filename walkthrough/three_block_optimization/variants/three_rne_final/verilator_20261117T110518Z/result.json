@@ -1,0 +1,45 @@
+{
+  "argv": [
+    "/scratch/grammy/blast/merlin-tvm-tuning/out/build/baselines/tvm-gemmini/pinned-rtl/chipyard/sims/verilator/simulator-chipyard.harness-GemminiRocketConfig",
+    "+permissive",
+    "+max-cycles=6000000",
+    "+loadmem=/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final/verilator_20261117T110518Z/attention_block.elf",
+    "+permissive-off",
+    "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final/verilator_20261117T110518Z/attention_block.elf"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 673.1203911178745,
+  "log": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final/verilator_20261117T110518Z/verilator.log",
+    "bytes": 5065,
+    "sha256": "b5526bf3c89615e5113c9cb70053c22a4e63e88bb1e24ad2567953ad99343dcf"
+  },
+  "comparison": {
+    "complete_output": true,
+    "observed_elements": 256,
+    "max_abs_error": 0.0,
+    "exact_bits": true,
+    "within_tolerance": true
+  },
+  "harness_finish": true,
+  "block_cycles": 1449383,
+  "passed": true,
+  "status": "passed",
+  "simulator": {
+    "path": "/scratch/grammy/blast/merlin-tvm-tuning/out/build/baselines/tvm-gemmini/pinned-rtl/chipyard/sims/verilator/simulator-chipyard.harness-GemminiRocketConfig",
+    "bytes": 15819288,
+    "sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7"
+  },
+  "elf": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final/verilator_20261117T110518Z/attention_block.elf",
+    "bytes": 151664,
+    "sha256": "8a640b3c4eb85ed11ab49b9eee1ecc9a1ae7588d21b27c2bf8a5462e03252c7f"
+  },
+  "reference": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final/capture/golden.npy",
+    "bytes": 1152,
+    "sha256": "7848cca7940c4b7c4c0b3e74d7eef46c6dcb63a500545c23edf639029f13888e"
+  },
+  "measurement_scope": "mcycle around complete kernel_entry; excludes boot, allocator reset and output printing"
+}

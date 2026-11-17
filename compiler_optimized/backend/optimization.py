@@ -11,6 +11,7 @@ def settings():
                      ('wide_shared_rhs','GEMMINI_OPT_WIDE_SHARED'),
                      ('literal_shared_epochs','GEMMINI_OPT_LITERAL_SHARED'),
                      ('shared_readout_epochs','GEMMINI_OPT_READOUT_SHARED'),
+                     ('scalar_quant_rne','GEMMINI_OPT_RNE'),
                      ('generalize_before_fusion','GEMMINI_OPT_FUSION')]:
         if env in os.environ:
             if os.environ[env] not in ('0','1'):

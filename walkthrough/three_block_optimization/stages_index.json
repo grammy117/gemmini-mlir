@@ -1,0 +1,328 @@
+{
+  "variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final",
+  "kernels": [
+    {
+      "kernel": "merlin_device_group_0",
+      "block_tiles_M_K_N": [
+        1,
+        2,
+        2
+      ],
+      "selected_pipeline": "retained",
+      "retained_operand": "lhs",
+      "physical_load_commands": 4,
+      "logical_load_bands": 6,
+      "compute_pairs": 4,
+      "stores": 2,
+      "ready_readout": true,
+      "identical_device_reemission": true
+    },
+    {
+      "kernel": "merlin_device_group_4",
+      "block_tiles_M_K_N": [
+        1,
+        2,
+        4
+      ],
+      "selected_pipeline": "retained",
+      "retained_operand": "lhs",
+      "physical_load_commands": 4,
+      "logical_load_bands": 10,
+      "compute_pairs": 8,
+      "stores": 4,
+      "ready_readout": true,
+      "identical_device_reemission": true
+    },
+    {
+      "kernel": "merlin_device_group_6",
+      "block_tiles_M_K_N": [
+        1,
+        4,
+        2
+      ],
+      "selected_pipeline": "retained",
+      "retained_operand": "lhs",
+      "physical_load_commands": 8,
+      "logical_load_bands": 12,
+      "compute_pairs": 8,
+      "stores": 2,
+      "ready_readout": true,
+      "identical_device_reemission": true
+    }
+  ],
+  "tensor_preparation_cse": {
+    "schema": "merlin.tensor_preparation_cse.v1",
+    "rewrites": {
+      "arith.constant": 6,
+      "tensor.splat": 6
+    },
+    "source_sha256": "b3ff13afaa60c71cd9aaebf96b30924b6ceccff054998cbd4af1b1cfc33acec7",
+    "output_sha256": "92629e0db4073b5fa2bee86cc591eceb132bd109d7d177baebea1bfc679b9661",
+    "binding_stage": "caller_before_stock_lowering",
+    "hardware_cycles": "not_measured"
+  },
+  "host_static_arena": {
+    "arena_bytes": 6976,
+    "bound": 20,
+    "refused": 63,
+    "refusals": {
+      "raw_pointer_escapes": 63
+    },
+    "naive_total_bytes": 6976,
+    "reuse_factor": 1.0,
+    "symbol": "merlin_arena",
+    "placements": [
+      {
+        "allocation": "%196",
+        "offset": 5696,
+        "bytes": 128,
+        "allocation_line": 36,
+        "release_line": 5747
+      },
+      {
+        "allocation": "%209",
+        "offset": 5824,
+        "bytes": 128,
+        "allocation_line": 56,
+        "release_line": 5756
+      },
+      {
+        "allocation": "%420",
+        "offset": 4992,
+        "bytes": 320,
+        "allocation_line": 362,
+        "release_line": 5846
+      },
+      {
+        "allocation": "%843",
+        "offset": 4416,
+        "bytes": 576,
+        "allocation_line": 946,
+        "release_line": 5936
+      },
+      {
+        "allocation": "%987",
+        "offset": 6848,
+        "bytes": 128,
+        "allocation_line": 1160,
+        "release_line": 5945
+      },
+      {
+        "allocation": "%1082",
+        "offset": 5312,
+        "bytes": 128,
+        "allocation_line": 1312,
+        "release_line": 5954
+      },
+      {
+        "allocation": "%1136",
+        "offset": 0,
+        "bytes": 1088,
+        "allocation_line": 1398,
+        "release_line": 5963
+      },
+      {
+        "allocation": "%1296",
+        "offset": 5440,
+        "bytes": 128,
+        "allocation_line": 1634,
+        "release_line": 5999
+      },
+      {
+        "allocation": "%1494",
+        "offset": 5568,
+        "bytes": 128,
+        "allocation_line": 1915,
+        "release_line": 6080
+      },
+      {
+        "allocation": "%2000",
+        "offset": 3264,
+        "bytes": 576,
+        "allocation_line": 2638,
+        "release_line": 6215
+      },
+      {
+        "allocation": "%2120",
+        "offset": 5952,
+        "bytes": 128,
+        "allocation_line": 2815,
+        "release_line": 6224
+      },
+      {
+        "allocation": "%2215",
+        "offset": 6080,
+        "bytes": 128,
+        "allocation_line": 2967,
+        "release_line": 6233
+      },
+      {
+        "allocation": "%2269",
+        "offset": 1088,
+        "bytes": 1088,
+        "allocation_line": 3053,
+        "release_line": 6242
+      },
+      {
+        "allocation": "%2428",
+        "offset": 6208,
+        "bytes": 128,
+        "allocation_line": 3288,
+        "release_line": 6278
+      },
+      {
+        "allocation": "%2626",
+        "offset": 6336,
+        "bytes": 128,
+        "allocation_line": 3569,
+        "release_line": 6359
+      },
+      {
+        "allocation": "%3132",
+        "offset": 3840,
+        "bytes": 576,
+        "allocation_line": 4292,
+        "release_line": 6494
+      },
+      {
+        "allocation": "%3252",
+        "offset": 6464,
+        "bytes": 128,
+        "allocation_line": 4469,
+        "release_line": 6503
+      },
+      {
+        "allocation": "%3347",
+        "offset": 6592,
+        "bytes": 128,
+        "allocation_line": 4621,
+        "release_line": 6512
+      },
+      {
+        "allocation": "%3401",
+        "offset": 2176,
+        "bytes": 1088,
+        "allocation_line": 4707,
+        "release_line": 6521
+      },
+      {
+        "allocation": "%3560",
+        "offset": 6720,
+        "bytes": 128,
+        "allocation_line": 4942,
+        "release_line": 6557
+      }
+    ]
+  },
+  "stage_prefix_replays": [
+    {
+      "argv": [
+        "/scratch/grammy/blast/merlin/third_party/llvm-build/bin/mlir-opt",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final/fresh10-authored-compiler/aa251a6392bf6be8cdeef4611fadbfbdcfbf3eb292d9a31fc51f8252cc8a3210/mixed/host/model.mlir",
+        "--pass-pipeline=builtin.module(canonicalize,cse,func.func(linalg-generalize-named-ops),func.func(linalg-fuse-elementwise-ops),one-shot-bufferize{bufferize-function-boundaries function-boundary-type-conversion=identity-layout-map allow-return-allocs-from-loops})",
+        "-o",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/07_host_bufferized.mlir"
+      ],
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/scratch/grammy/blast/merlin/third_party/llvm-build/bin/mlir-opt",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/three_rne_final/fresh10-authored-compiler/aa251a6392bf6be8cdeef4611fadbfbdcfbf3eb292d9a31fc51f8252cc8a3210/mixed/host/model.mlir",
+        "--pass-pipeline=builtin.module(canonicalize,cse,func.func(linalg-generalize-named-ops),func.func(linalg-fuse-elementwise-ops),one-shot-bufferize{bufferize-function-boundaries function-boundary-type-conversion=identity-layout-map allow-return-allocs-from-loops},canonicalize,buffer-results-to-out-params{modify-public-functions hoist-static-allocs},func.func(buffer-hoisting,buffer-loop-hoisting),ownership-based-buffer-deallocation,buffer-deallocation-simplification,bufferization-lower-deallocations,func.func(convert-linalg-to-loops))",
+        "-o",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/08_host_loops.mlir"
+      ],
+      "returncode": 0,
+      "stderr": ""
+    }
+  ],
+  "stages": [
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/00_shared_source.mlir",
+      "bytes": 900165,
+      "sha256": "0fcab6e2bfe57c54db87005162a8d44b1269ae900c0951bf38c3c708b5fcee44"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/01_model.mlir",
+      "bytes": 879409,
+      "sha256": "ea4b9bfc8af8700e24b494f0f109abc2fce27a842eb5237fa4a19866069a28ed"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/02_routed.mlir",
+      "bytes": 687337,
+      "sha256": "b3ff13afaa60c71cd9aaebf96b30924b6ceccff054998cbd4af1b1cfc33acec7"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/03_q_source.mlir",
+      "bytes": 19217,
+      "sha256": "64776cb5813c57fa3c1c1582e4d3720f9c82a11c16f6c2918d46cd72d840d102"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/04_q_logical_commands.json",
+      "bytes": 86555,
+      "sha256": "e19f13a88c0f81868b62bbc0b2e3239f47c858598ea92122ae2f40d62f8b6cbf"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/05_q_schedule.mlir",
+      "bytes": 1217,
+      "sha256": "fd1d12a3f7c22be5aadeaa4cc3298ecdbcd50ad91a84c1d436dc6b6c21f704cb"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/06_q_llvm.mlir",
+      "bytes": 15835,
+      "sha256": "2839d4427909f37efea12f7a27518ecbec2cdbb07e804a76cf3dcd35ecd08991"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/07_host_bufferized.mlir",
+      "bytes": 164213,
+      "sha256": "f1331da7a616b2e42d89a731da265e1702464268a2cd3496bb2e4a1366cf90fe"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/08_host_loops.mlir",
+      "bytes": 193103,
+      "sha256": "5680dc8a6d413f8adeb96d6ad9cf6fbb9218460c3f95c280a0ea9cf7ccba57d7"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/09_host_llvm.mlir",
+      "bytes": 484552,
+      "sha256": "780691219ff035298a6e31bee58d1d1df86e18787795ff0c5707df522cffc086"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/10_host.ll",
+      "bytes": 353124,
+      "sha256": "267fae101eb09f5946cfafcbf369e9378eadf1457115a45815487521de5d0b5c"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/11_device_shim.c",
+      "bytes": 48900,
+      "sha256": "623f4e400eabecd99efb719552ead09aee78c35d1b40ee3955236b7b7b71cbb9"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/12_entry_wrapper.c",
+      "bytes": 3022,
+      "sha256": "bf6e47e8beffc99c0bee3c8629b3c1aaeddcf5998c9addcd8c90b78a57f9a231"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/13_before_scalar_quant_rne.ll",
+      "bytes": 623548,
+      "sha256": "c12d12d9ed360b6d16ecb7907a0a659ff43663ecf252edd031377d7d536c145c"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/13_combined.ll",
+      "bytes": 622928,
+      "sha256": "7135f9157b833761a023171d168ea1ca8a6ee171093129049cf41eb016f2eebf"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/13_scalar_quant_rne.json",
+      "bytes": 3504,
+      "sha256": "df638f79cf12be461b840f90d401a91b3cc2d28734401348e338ac7e84f6cc8d"
+    },
+    {
+      "file": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/stages/14_model.s",
+      "bytes": 736043,
+      "sha256": "85f31330db2b92678ff8c8431f57a1a3a85368bcfee62d95c0cbd514ed312309"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "0": {
+    "weight": "blocks.0.n1.w",
+    "kind": "param",
+    "dtype": "float32",
+    "shape": [
+      32
+    ]
+  },
+  "1": {
+    "weight": "blocks.0.n2.w",
+    "kind": "param",
+    "dtype": "float32",
+    "shape": [
+      32
+    ]
+  },
+  "2": {
+    "weight": "blocks.1.n1.w",
+    "kind": "param",
+    "dtype": "float32",
+    "shape": [
+      32
+    ]
+  },
+  "3": {
+    "weight": "blocks.1.n2.w",
+    "kind": "param",
+    "dtype": "float32",
+    "shape": [
+      32
+    ]
+  },
+  "4": {
+    "weight": "blocks.0.attn.q.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "5": {
+    "weight": "blocks.0.attn.k.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "6": {
+    "weight": "blocks.0.attn.v.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "7": {
+    "weight": "blocks.0.attn.o.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "8": {
+    "weight": "blocks.0.mlp.g.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      64
+    ]
+  },
+  "9": {
+    "weight": "blocks.0.mlp.u.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      64
+    ]
+  },
+  "10": {
+    "weight": "blocks.0.mlp.dn.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      64,
+      32
+    ]
+  },
+  "11": {
+    "weight": "blocks.1.attn.q.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "12": {
+    "weight": "blocks.1.attn.k.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "13": {
+    "weight": "blocks.1.attn.v.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "14": {
+    "weight": "blocks.1.attn.o.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      32
+    ]
+  },
+  "15": {
+    "weight": "blocks.1.mlp.g.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      64
+    ]
+  },
+  "16": {
+    "weight": "blocks.1.mlp.u.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      32,
+      64
+    ]
+  },
+  "17": {
+    "weight": "blocks.1.mlp.dn.weight_t",
+    "kind": "buffer",
+    "dtype": "int8",
+    "shape": [
+      64,
+      32
+    ]
+  },
+  "18": {
+    "kind": "input",
+    "name": "x"
+  }
+}
