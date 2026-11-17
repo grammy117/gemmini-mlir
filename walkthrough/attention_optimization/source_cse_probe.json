@@ -1,0 +1,11 @@
+{
+  "schema": "optimized.pure_tensor_cse.v1",
+  "rewrites": {
+    "arith.constant": 5,
+    "linalg.generic": 12,
+    "tensor.expand_shape": 2,
+    "tensor.splat": 2
+  },
+  "source_sha256": "032cba2fb0877cb9dab2297cc0ed10d80c1658cd0d3ccbf0bbade4ed3e496941",
+  "output_sha256": "5dcd0ed0b8f8fab70061f78d92394fd8b58b04c9d2452394ec1d380543533703"
+}

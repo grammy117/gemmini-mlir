@@ -1,0 +1,449 @@
+{
+  "schema": "gemmini.exploration_index.v1",
+  "scope": "navigation of local exploration; build directories and incomplete attempts are not qualification claims",
+  "variants": [
+    {
+      "variant": "walkthrough/three_block_optimization/variants/nearby_context_grouped",
+      "selection": "walkthrough/three_block_optimization/variants/nearby_context_grouped/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/nearby_context_grouped/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/nearby_full_grouped",
+      "selection": "walkthrough/three_block_optimization/variants/nearby_full_grouped/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/nearby_full_grouped/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/nearby_optimized",
+      "selection": "walkthrough/three_block_optimization/variants/nearby_optimized/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/nearby_optimized/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/nearby_release",
+      "selection": "walkthrough/three_block_optimization/variants/nearby_release/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/nearby_release/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/nearby_rne_final",
+      "selection": "walkthrough/three_block_optimization/variants/nearby_rne_final/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/nearby_rne_final/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/one_cluster_optimized",
+      "selection": "walkthrough/three_block_optimization/variants/one_cluster_optimized/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/one_cluster_optimized/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/variants/one_cluster_optimized/verilator_20261117T125906Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 357674
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/one_context_grouped",
+      "selection": "walkthrough/three_block_optimization/variants/one_context_grouped/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/one_context_grouped/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/one_final",
+      "selection": "walkthrough/three_block_optimization/variants/one_final/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/one_final/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/one_optimized",
+      "selection": "walkthrough/three_block_optimization/variants/one_optimized/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/one_optimized/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/one_release",
+      "selection": "walkthrough/three_block_optimization/variants/one_release/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/one_release/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/one_rne_final",
+      "selection": "walkthrough/three_block_optimization/variants/one_rne_final/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/one_rne_final/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/variants/one_rne_final/verilator_20261117T111731Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 483977
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/one_rne_o3",
+      "selection": "walkthrough/three_block_optimization/variants/one_rne_o3/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/one_rne_o3/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/one_rne_off_control",
+      "selection": "walkthrough/three_block_optimization/variants/one_rne_off_control/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/one_rne_off_control/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/three_checkpoint_o3",
+      "selection": "walkthrough/three_block_optimization/variants/three_checkpoint_o3/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/three_checkpoint_o3/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/variants/three_checkpoint_o3/verilator_20261117T105109Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 1639267
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/three_cluster_optimized",
+      "selection": "walkthrough/three_block_optimization/variants/three_cluster_optimized/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/three_cluster_optimized/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/variants/three_cluster_optimized/verilator_20261117T131948Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 1060118
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/three_context_grouped",
+      "selection": "walkthrough/three_block_optimization/variants/three_context_grouped/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/three_context_grouped/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/variants/three_context_grouped/verilator_20261117T132902Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 1062721
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/three_context_separate",
+      "selection": "walkthrough/three_block_optimization/variants/three_context_separate/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/three_context_separate/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/variants/three_context_separate/verilator_20261117T133858Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 1062896
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/three_final",
+      "selection": "walkthrough/three_block_optimization/variants/three_final/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/three_final/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/three_optimized",
+      "selection": "walkthrough/three_block_optimization/variants/three_optimized/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/three_optimized/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/variants/three_optimized/verilator_20261117T124904Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 1067468
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/three_release",
+      "selection": "walkthrough/three_block_optimization/variants/three_release/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/three_release/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/three_rne_final",
+      "selection": "walkthrough/three_block_optimization/variants/three_rne_final/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/three_rne_final/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/variants/three_rne_final/verilator_20261117T110518Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 1449383
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/three_rne_o3",
+      "selection": "walkthrough/three_block_optimization/variants/three_rne_o3/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/three_rne_o3/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/three_rne_off_control",
+      "selection": "walkthrough/three_block_optimization/variants/three_rne_off_control/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/three_rne_off_control/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/two_context_grouped",
+      "selection": "walkthrough/three_block_optimization/variants/two_context_grouped/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/two_context_grouped/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/two_full_grouped",
+      "selection": "walkthrough/three_block_optimization/variants/two_full_grouped/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/two_full_grouped/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/two_optimized",
+      "selection": "walkthrough/three_block_optimization/variants/two_optimized/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/two_optimized/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/two_release",
+      "selection": "walkthrough/three_block_optimization/variants/two_release/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/two_release/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/variants/two_rne_final",
+      "selection": "walkthrough/three_block_optimization/variants/two_rne_final/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/variants/two_rne_final/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/nearby_allocation_contracts",
+      "selection": "walkthrough/three_block_optimization/exploration/nearby_allocation_contracts/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/nearby_allocation_contracts/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/nearby_contracts_copies",
+      "selection": "walkthrough/three_block_optimization/exploration/nearby_contracts_copies/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/nearby_contracts_copies/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_aligned_alloc",
+      "selection": "walkthrough/three_block_optimization/exploration/one_aligned_alloc/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_aligned_alloc/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_allocation_contracts",
+      "selection": "walkthrough/three_block_optimization/exploration/one_allocation_contracts/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_allocation_contracts/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 380748
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_cluster_contracts_copies",
+      "selection": "walkthrough/three_block_optimization/exploration/one_cluster_contracts_copies/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_cluster_contracts_copies/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_cluster_inline_adapters",
+      "selection": "walkthrough/three_block_optimization/exploration/one_cluster_inline_adapters/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_cluster_inline_adapters/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/one_cluster_inline_adapters/verilator_20261117T131420Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 356696
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_contracts_copies",
+      "selection": "walkthrough/three_block_optimization/exploration/one_contracts_copies/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_contracts_copies/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/one_contracts_copies/verilator_20261117T122102Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 362214
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_inline_adapters",
+      "selection": "walkthrough/three_block_optimization/exploration/one_inline_adapters/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_inline_adapters/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/one_inline_adapters/verilator_20261117T130948Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 359941
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_inline_all",
+      "selection": "walkthrough/three_block_optimization/exploration/one_inline_all/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_inline_all/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/one_inline_all/verilator_20261117T124113Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 358988
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_integer_constants",
+      "selection": "walkthrough/three_block_optimization/exploration/one_integer_constants/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_integer_constants/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_internalize",
+      "selection": "walkthrough/three_block_optimization/exploration/one_internalize/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_internalize/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/one_internalize/verilator_20261117T123638Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 361791
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_model_o2",
+      "selection": "walkthrough/three_block_optimization/exploration/one_model_o2/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_model_o2/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/one_model_o2/verilator_20261117T122634Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 362586
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_model_os",
+      "selection": "walkthrough/three_block_optimization/exploration/one_model_os/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_model_os/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_no_unroll",
+      "selection": "walkthrough/three_block_optimization/exploration/one_no_unroll/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_no_unroll/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/one_no_unroll/verilator_20261117T123136Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 442948
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_stack_probe",
+      "selection": "walkthrough/three_block_optimization/exploration/one_stack_probe/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_stack_probe/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/one_static_copies",
+      "selection": "walkthrough/three_block_optimization/exploration/one_static_copies/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/one_static_copies/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/one_static_copies/verilator_20261117T120622Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 463386
+        },
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/one_static_copies/verilator_20261117T120844Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 463386
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/profile_context_grouped",
+      "selection": null,
+      "local_build_report": "walkthrough/three_block_optimization/exploration/profile_context_grouped/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/profile_full_grouped",
+      "selection": null,
+      "local_build_report": "walkthrough/three_block_optimization/exploration/profile_full_grouped/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/profile_integer_constants",
+      "selection": null,
+      "local_build_report": "walkthrough/three_block_optimization/exploration/profile_integer_constants/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/profile_one_contracts_copies",
+      "selection": null,
+      "local_build_report": "walkthrough/three_block_optimization/exploration/profile_one_contracts_copies/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/profile_one_optimized",
+      "selection": null,
+      "local_build_report": "walkthrough/three_block_optimization/exploration/profile_one_optimized/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/profile_one_optimized/verilator_20261117T130342Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 378628
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/profile_one_rne",
+      "selection": null,
+      "local_build_report": "walkthrough/three_block_optimization/exploration/profile_one_rne/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/profile_one_rne_v2",
+      "selection": null,
+      "local_build_report": "walkthrough/three_block_optimization/exploration/profile_one_rne_v2/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/profile_one_rne_v3",
+      "selection": null,
+      "local_build_report": "walkthrough/three_block_optimization/exploration/profile_one_rne_v3/build/build_summary.json",
+      "rtl_attempts": [
+        {
+          "receipt": "walkthrough/three_block_optimization/exploration/profile_one_rne_v3/verilator_20261117T113756Z/result.json",
+          "status": "reported complete and bit-exact",
+          "cycles": 506993
+        }
+      ]
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/three_contracts_copies",
+      "selection": "walkthrough/three_block_optimization/exploration/three_contracts_copies/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/three_contracts_copies/build/build_summary.json",
+      "rtl_attempts": []
+    },
+    {
+      "variant": "walkthrough/three_block_optimization/exploration/three_internalize",
+      "selection": "walkthrough/three_block_optimization/exploration/three_internalize/selection.json",
+      "local_build_report": "walkthrough/three_block_optimization/exploration/three_internalize/build/build_summary.json",
+      "rtl_attempts": []
+    }
+  ]
+}

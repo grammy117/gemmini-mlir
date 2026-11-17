@@ -1,0 +1,15 @@
+
+# inputs
+p_block_n1_w: PARAMETER target='block.n1.w'
+p_block_n2_w: PARAMETER target='block.n2.w'
+b_block_attn_q_weight_t: BUFFER target='block.attn.q.weight_t' persistent=True
+b_block_attn_k_weight_t: BUFFER target='block.attn.k.weight_t' persistent=True
+b_block_attn_v_weight_t: BUFFER target='block.attn.v.weight_t' persistent=True
+b_block_attn_o_weight_t: BUFFER target='block.attn.o.weight_t' persistent=True
+b_block_mlp_g_weight_t: BUFFER target='block.mlp.g.weight_t' persistent=True
+b_block_mlp_u_weight_t: BUFFER target='block.mlp.u.weight_t' persistent=True
+b_block_mlp_dn_weight_t: BUFFER target='block.mlp.dn.weight_t' persistent=True
+x: USER_INPUT
+
+# outputs
+add_6: USER_OUTPUT

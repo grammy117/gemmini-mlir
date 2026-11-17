@@ -1,0 +1,10 @@
+
+# inputs
+b_attention_q_weight_t: BUFFER target='attention.q.weight_t' persistent=True
+b_attention_k_weight_t: BUFFER target='attention.k.weight_t' persistent=True
+b_attention_v_weight_t: BUFFER target='attention.v.weight_t' persistent=True
+b_attention_o_weight_t: BUFFER target='attention.o.weight_t' persistent=True
+x: USER_INPUT
+
+# outputs
+view_17: USER_OUTPUT

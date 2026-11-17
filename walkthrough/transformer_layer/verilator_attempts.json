@@ -1,0 +1,26 @@
+[
+  {
+    "directory": "walkthrough/transformer_layer/verilator_20261117T054235Z",
+    "status": "failed_or_incomplete",
+    "wall_seconds": 1.1174908909015357,
+    "returncode": -6,
+    "block_cycles": null,
+    "log": {
+      "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T054235Z/verilator.log",
+      "bytes": 111,
+      "sha256": "75e35f108cc12ef011ea63c3b97e669f3176afe9608f8f1f905293fb9dafc030"
+    }
+  },
+  {
+    "directory": "walkthrough/transformer_layer/verilator_20261117T054444Z",
+    "status": "wall_timeout",
+    "wall_seconds": 180.01811193302274,
+    "returncode": 0,
+    "block_cycles": null,
+    "log": {
+      "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/transformer_layer/verilator_20261117T054444Z/verilator.log",
+      "bytes": 274,
+      "sha256": "b5acf7ff07549b91c10aba54e368654aedebb56aa2c4e71d980b506caa44c0d7"
+    }
+  }
+]

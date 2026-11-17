@@ -1,0 +1,7 @@
+{
+  "policy": "internalize",
+  "source_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/three_contracts_copies",
+  "original_llvm_sha256": "c61c6d172b30ea0f024c1905d4ae996cd8137795d929d093f5a65fc6cc67725c",
+  "selected_llvm_sha256": "92fc40eca5d04e59349a3d0d25fa9042babc7739d183cfcf96c507b2cd90c932",
+  "scope": "model object only; unchanged runtime and numeric flags"
+}
