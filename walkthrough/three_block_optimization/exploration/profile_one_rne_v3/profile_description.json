@@ -1,0 +1,92 @@
+{
+  "source": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_rne_final",
+  "groups": 7,
+  "categories": [
+    "memrefCopy",
+    "expf",
+    "rsqrtf",
+    "powf",
+    "sinf",
+    "cosf",
+    "malloc",
+    "free"
+  ],
+  "segments": [
+    {
+      "id": 1,
+      "kind": "host",
+      "group": null
+    },
+    {
+      "id": 2,
+      "kind": "device",
+      "group": 0
+    },
+    {
+      "id": 3,
+      "kind": "host",
+      "group": null
+    },
+    {
+      "id": 4,
+      "kind": "device",
+      "group": 1
+    },
+    {
+      "id": 5,
+      "kind": "host",
+      "group": null
+    },
+    {
+      "id": 6,
+      "kind": "device",
+      "group": 2
+    },
+    {
+      "id": 7,
+      "kind": "host",
+      "group": null
+    },
+    {
+      "id": 8,
+      "kind": "device",
+      "group": 3
+    },
+    {
+      "id": 9,
+      "kind": "host",
+      "group": null
+    },
+    {
+      "id": 10,
+      "kind": "device",
+      "group": 4
+    },
+    {
+      "id": 11,
+      "kind": "host",
+      "group": null
+    },
+    {
+      "id": 12,
+      "kind": "device",
+      "group": 5
+    },
+    {
+      "id": 13,
+      "kind": "host",
+      "group": null
+    },
+    {
+      "id": 14,
+      "kind": "device",
+      "group": 6
+    },
+    {
+      "id": 15,
+      "kind": "host",
+      "group": null
+    }
+  ],
+  "scope": "intrusive mcycle attribution; math/runtime categories are included in host segments, not additive to them"
+}

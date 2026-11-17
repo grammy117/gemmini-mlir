@@ -1,0 +1,130 @@
+{
+  "schema": "gemmini.intrusive_rtl_profile.v1",
+  "baseline_clean_cycles": 483977,
+  "instrumented_cycles": 506993,
+  "instrumentation_cycle_increase": 0.04755597889982366,
+  "device_segment_cycles": 9281,
+  "host_segment_cycles": 497370,
+  "device_fraction": 0.0183183295799278,
+  "segments": [
+    {
+      "segment": 1,
+      "cycles": 41266,
+      "kind": "host"
+    },
+    {
+      "segment": 2,
+      "cycles": 1451,
+      "kind": "device"
+    },
+    {
+      "segment": 3,
+      "cycles": 4196,
+      "kind": "host"
+    },
+    {
+      "segment": 4,
+      "cycles": 1093,
+      "kind": "device"
+    },
+    {
+      "segment": 5,
+      "cycles": 3855,
+      "kind": "host"
+    },
+    {
+      "segment": 6,
+      "cycles": 1114,
+      "kind": "device"
+    },
+    {
+      "segment": 7,
+      "cycles": 241007,
+      "kind": "host"
+    },
+    {
+      "segment": 8,
+      "cycles": 1279,
+      "kind": "device"
+    },
+    {
+      "segment": 9,
+      "cycles": 46408,
+      "kind": "host"
+    },
+    {
+      "segment": 10,
+      "cycles": 1485,
+      "kind": "device"
+    },
+    {
+      "segment": 11,
+      "cycles": 189,
+      "kind": "host"
+    },
+    {
+      "segment": 12,
+      "cycles": 1330,
+      "kind": "device"
+    },
+    {
+      "segment": 13,
+      "cycles": 143856,
+      "kind": "host"
+    },
+    {
+      "segment": 14,
+      "cycles": 1529,
+      "kind": "device"
+    },
+    {
+      "segment": 15,
+      "cycles": 16593,
+      "kind": "host"
+    }
+  ],
+  "runtime_categories": [
+    {
+      "category": "memrefCopy",
+      "calls": 12,
+      "cycles": 23055
+    },
+    {
+      "category": "expf",
+      "calls": 640,
+      "cycles": 108948
+    },
+    {
+      "category": "rsqrtf",
+      "calls": 512,
+      "cycles": 36561
+    },
+    {
+      "category": "powf",
+      "calls": 0,
+      "cycles": 0
+    },
+    {
+      "category": "sinf",
+      "calls": 64,
+      "cycles": 5579
+    },
+    {
+      "category": "cosf",
+      "calls": 64,
+      "cycles": 6420
+    },
+    {
+      "category": "malloc",
+      "calls": 25,
+      "cycles": 2812
+    },
+    {
+      "category": "free",
+      "calls": 25,
+      "cycles": 2212
+    }
+  ],
+  "receipt": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/profile_one_rne_v3/verilator_20261117T113756Z/result.json",
+  "scope": "intrusive mcycle attribution; math/runtime categories are included in host segments, not additive to them"
+}
