@@ -39,6 +39,7 @@ class CopyChecks(unittest.TestCase):
     def test_unknown_borrowed_origin_refuses(self):self.assertFalse(rewrite(source(borrowed=True))[1]['copies'])
     def test_contiguous_copy_keeps_memcpy_route(self):self.assertFalse(rewrite(source(contiguous=True))[1]['copies'])
     def test_subbyte_storage_refuses(self):self.assertFalse(rewrite(source(dtype='i1'))[1]['copies'])
+    def test_noncanonical_integer_storage_refuses(self):self.assertFalse(rewrite(source(dtype='i24'))[1]['copies'])
     def test_unknown_annotation_refuses(self):
         from merlin.frontends.linalg_mlir import parse_mlir_text
         from merlin.xdsl_dialects._common import text

@@ -45,7 +45,7 @@ def rewrite(source):
             refusals['unsupported_static_host_memref']+=1;continue
         element=st.element_type
         if not (isinstance(element,(Float16Type,Float32Type,Float64Type,BFloat16Type))
-                or isinstance(element,IntegerType) and element.width.data>=8 and element.width.data%8==0):
+                or isinstance(element,IntegerType) and element.width.data in (8,16,32,64)):
             refusals['unsupported_element_representation']+=1;continue
         if isinstance(st.layout,NoneAttr) and isinstance(dt.layout,NoneAttr):
             refusals['already_contiguous']+=1;continue
