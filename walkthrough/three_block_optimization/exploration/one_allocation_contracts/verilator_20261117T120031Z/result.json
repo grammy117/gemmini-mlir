@@ -1,0 +1,45 @@
+{
+  "argv": [
+    "/scratch/grammy/blast/merlin-tvm-tuning/out/build/baselines/tvm-gemmini/pinned-rtl/chipyard/sims/verilator/simulator-chipyard.harness-GemminiRocketConfig",
+    "+permissive",
+    "+max-cycles=6000000",
+    "+loadmem=/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/attention_block.elf",
+    "+permissive-off",
+    "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/attention_block.elf"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 311.01931667886674,
+  "log": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/verilator.log",
+    "bytes": 5064,
+    "sha256": "bc413ace2f01c78dff9c3c0921fa887060565fbcf93054aa2a80d9b2333e77f1"
+  },
+  "comparison": {
+    "complete_output": true,
+    "observed_elements": 256,
+    "max_abs_error": 0.0,
+    "exact_bits": true,
+    "within_tolerance": true
+  },
+  "harness_finish": true,
+  "block_cycles": 380748,
+  "passed": true,
+  "status": "passed",
+  "simulator": {
+    "path": "/scratch/grammy/blast/merlin-tvm-tuning/out/build/baselines/tvm-gemmini/pinned-rtl/chipyard/sims/verilator/simulator-chipyard.harness-GemminiRocketConfig",
+    "bytes": 15819288,
+    "sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7"
+  },
+  "elf": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/attention_block.elf",
+    "bytes": 66320,
+    "sha256": "e662f55bd20ab80c2c2bcc3cc87f52932060384b4c60b0f5ea26e12eaebee548"
+  },
+  "reference": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/capture/golden.npy",
+    "bytes": 1152,
+    "sha256": "f14d2ca2e2527c754911c242b1d07547a9fb4c6122ee746a36524b391e3cf205"
+  },
+  "measurement_scope": "mcycle around complete kernel_entry; excludes boot, allocator reset and output printing"
+}

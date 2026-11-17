@@ -68,6 +68,17 @@ def lower(
         if not data_layout:
             raise ValueError("explicit index width requires selected compiler data layout")
         pipeline = _bind_index_width(pipeline, index_bits)
+    if os.environ.get('MERLIN_STOCK_ALIGNED_ALLOC','0') == '1':
+        # Standard memref lowering can retain allocation provenance by calling
+        # the C11 aligned allocator instead of integer-rounding malloc pointers.
+        import re
+        def aligned(match):
+            options=match.group(1) or ''
+            if 'use-aligned-alloc' in options:
+                raise ValueError('aligned allocation selection conflicts with explicit pipeline options')
+            return 'finalize-memref-to-llvm{'+options+' use-aligned-alloc=true}'
+        pipeline,count=re.subn(r'finalize-memref-to-llvm(?:\{([^}]*)\})?',aligned,pipeline)
+        if count!=1:raise ValueError('aligned allocation needs one final memref lowering pass')
     if data_layout is not None:
         from xdsl.dialects.builtin import StringAttr
         from xdsl.printer import Printer

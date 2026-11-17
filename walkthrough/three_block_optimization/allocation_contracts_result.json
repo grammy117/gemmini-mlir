@@ -1,0 +1,8 @@
+{
+  "schema": "gemmini.allocation_contracts_ab.v1",
+  "before_cycles": 483977,
+  "after_cycles": 380748,
+  "cycle_reduction": 0.2132931936848239,
+  "receipt": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/result.json",
+  "mechanism": "C11 aligned allocation, fresh-return facts, existing pure math termination/unwind facts and bounded-asm memory effects; LLVM hoists row invariants"
+}

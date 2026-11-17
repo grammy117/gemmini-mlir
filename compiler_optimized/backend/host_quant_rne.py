@@ -34,7 +34,7 @@ def _clamp(value, definitions):
     return b,kind,constant,(condition,select)
 
 
-def rewrite(llvm_text, routed_source, *, host_isa='rv64gc'):
+def rewrite(llvm_text, routed_source, *, host_isa='rv64gc', emit_call_contracts=False):
     from merlin.frontends.linalg_mlir import parse_mlir_text
     module=parse_mlir_text(routed_source)
     report={'schema':'gemmini.scalar_bounded_quant_rne.v1','routes':[],
@@ -105,7 +105,8 @@ def rewrite(llvm_text, routed_source, *, host_isa='rv64gc'):
             raw=rounded.operands[0]
             replacement=(f'{temporary} = call i32 asm "fmax.s ft0, $1, $2\\0Afmin.s ft0, ft0, $3\\0A'
                          f'fcvt.w.s $0, ft0, rne", "=r,f,f,f,~{{ft0}}"'
-                         f'(float {raw}, float {lower:.6e}, float {upper:.6e})\n'
+                         f'(float {raw}, float {lower:.6e}, float {upper:.6e})'
+                         +(' nounwind willreturn memory(none)' if emit_call_contracts else '')+'\n'
                          f'  {result.result} = trunc i32 {temporary} to {dtype}')
             edits.append((result.start,result.end,replacement))
             edits.extend((op.start,op.end,'') for op in chain)

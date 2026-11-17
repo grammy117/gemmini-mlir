@@ -1,0 +1,202 @@
+{
+  "historical_receipt": {
+    "path": "/scratch/grammy/blast/merlin-tvm-tuning/out/artifacts/verification/gemmini-tvm-rtl-a26/v1/verification_gemmini-tvm-rtl-a26_v1_20261026T184010Z_431485b/runtime-qualification.json",
+    "bytes": 18370,
+    "sha256": "742a824ffccd09cd9a8203a1e6343f2ac530f9544be2f8c0afc3541794147665"
+  },
+  "simulator": {
+    "path": "/scratch/grammy/blast/merlin-tvm-tuning/out/build/baselines/tvm-gemmini/pinned-rtl/chipyard/sims/verilator/simulator-chipyard.harness-GemminiRocketConfig",
+    "bytes": 15819288,
+    "sha256": "a37f42b6d2f3413881faf154a94eaffaedf8d65b800e667200f523570d30d0d7"
+  },
+  "historical_controls": [
+    {
+      "case": "startup_complete",
+      "wall_seconds": 19.504850015975535,
+      "returncode": 0,
+      "timed_out": false
+    },
+    {
+      "case": "startup_negative",
+      "wall_seconds": 6.2355616190470755,
+      "returncode": 255,
+      "timed_out": false
+    },
+    {
+      "case": "primitive-smoke-valid",
+      "wall_seconds": 40.23549222690053,
+      "returncode": 0,
+      "timed_out": false
+    },
+    {
+      "case": "primitive-smoke-negative-corrected",
+      "wall_seconds": 15.390054526971653,
+      "returncode": 255,
+      "timed_out": false
+    },
+    {
+      "case": "tiny-offline-oracle-valid",
+      "wall_seconds": 128.7718853179831,
+      "returncode": 0,
+      "timed_out": false
+    },
+    {
+      "case": "tiny-offline-oracle-bad-oracle",
+      "wall_seconds": 21.052030257880688,
+      "returncode": 255,
+      "timed_out": false
+    }
+  ],
+  "initial_wall_estimate_seconds": [
+    180,
+    360
+  ],
+  "workload": "self-attention only: Q/K/V, RoPE, causal softmax, value product, output projection",
+  "estimate_basis": "complete full decoder layer measured 437.508 s in the preceding local RTL run",
+  "prior_attempt": "same block exceeded the original 180-second wall limit",
+  "approved_wall_limit_seconds": 1800,
+  "configuration": "GemminiRocketConfig; Rocket + 16x16 INT8 Gemmini; 256MiB magic memory",
+  "numerical_reference": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/capture/golden.npy",
+    "bytes": 1152,
+    "sha256": "f14d2ca2e2527c754911c242b1d07547a9fb4c6122ee746a36524b391e3cf205"
+  },
+  "compiler_model_object": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/build/model.o",
+    "bytes": 51400,
+    "sha256": "e78794b266d8f9b5d66637c787704667959ef594e39f581fea8ac2e1a50f04c5"
+  },
+  "instrumented_elf": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/attention_block.elf",
+    "bytes": 66320,
+    "sha256": "e662f55bd20ab80c2c2bcc3cc87f52932060384b4c60b0f5ea26e12eaebee548"
+  },
+  "timing_boundary": "mcycle around complete kernel_entry; excludes boot, allocator reset and output printing",
+  "original_elf": {
+    "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/build/attention_block.elf",
+    "bytes": 66240,
+    "sha256": "93c0955fafc327190ac64f22b7eb80e9f7666719e51f635fedbc5cb888376cc8"
+  },
+  "build_commands": [
+    {
+      "argv": [
+        "/scratch/grammy/blast/merlin/third_party/llvm-build/bin/clang-23",
+        "--target=riscv64-unknown-elf",
+        "-march=rv64gc",
+        "-mabi=lp64d",
+        "-mcmodel=medany",
+        "-mno-relax",
+        "-O3",
+        "-ffp-contract=off",
+        "-fno-vectorize",
+        "-fno-slp-vectorize",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-ffreestanding",
+        "-fno-builtin",
+        "--sysroot=/scratch/grammy/blast/chipyard/.conda-env/riscv-tools/riscv64-unknown-elf",
+        "-isystem",
+        "/scratch/grammy/blast/chipyard/.conda-env/riscv-tools/riscv64-unknown-elf/include",
+        "-I",
+        "/scratch/grammy/blast/merlin/merlin/runtime/baremetal/spike",
+        "-DMERLIN_ARENA_BASE_ADDR=0x88000000ULL",
+        "-DMERLIN_ARENA_SIZE_BYTES=0x400000ULL",
+        "-c",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/main.c",
+        "-o",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/main.o"
+      ],
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/scratch/grammy/blast/chipyard/.conda-env/riscv-tools/bin/riscv64-unknown-elf-gcc",
+        "-march=rv64gc",
+        "-mabi=lp64d",
+        "-mcmodel=medany",
+        "-mno-relax",
+        "-nostdlib",
+        "-nostartfiles",
+        "-static",
+        "-Wl,--gc-sections",
+        "-Wl,-Map=/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/attention_block.map",
+        "-T",
+        "/scratch/grammy/blast/merlin/merlin/runtime/baremetal/spike/link.ld",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/build/model.o",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/main.o",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/build/crt.o",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/build/htif.o",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/build/libc_min.o",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/build/merlin_malloc.o",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/build/mlir_runtime.o",
+        "-lm",
+        "-lgcc",
+        "-o",
+        "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/attention_block.elf"
+      ],
+      "returncode": 0,
+      "stderr": ""
+    }
+  ],
+  "spike_control": {
+    "argv": [
+      "/scratch/grammy/blast/chipyard/.conda-env/riscv-tools/bin/spike",
+      "--isa=rv64gc",
+      "-p1",
+      "-m256",
+      "--instructions=20000000",
+      "--extlib=/scratch/grammy/blast/merlin-tvm-tuning/out/build/baselines/tvm-gemmini/simulator-a26/libgemmini.so",
+      "--extension=gemmini",
+      "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/attention_block.elf"
+    ],
+    "returncode": 0,
+    "timed_out": false,
+    "wall_seconds": 0.01978415297344327,
+    "log": {
+      "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/spike.log",
+      "bytes": 4856,
+      "sha256": "49cdd49655e4bda78167c06255f42e7519279396fc474091ec05a38c66bb873e"
+    },
+    "comparison": {
+      "complete_output": true,
+      "observed_elements": 256,
+      "max_abs_error": 0.0,
+      "exact_bits": true,
+      "within_tolerance": true
+    }
+  },
+  "limits": {
+    "cpu_affinity": [
+      0
+    ],
+    "address_space_bytes": 2147483648,
+    "stack_bytes": 67108864,
+    "wall_seconds": 1800,
+    "max_cycles": 6000000
+  },
+  "host_thread_limit": {
+    "source": {
+      "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/one_host_thread.c",
+      "bytes": 206,
+      "sha256": "f908a7e2b5d06a4e6f7c4df4e037cfe6467af5c8174acadad1a18598b37f42f5"
+    },
+    "library": {
+      "path": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/one_host_thread.so",
+      "bytes": 13504,
+      "sha256": "a94625a40c5d00ea407a1740df1e46325ff0980ea1c8034b7926067c95db3c88"
+    },
+    "compile_argv": [
+      "/scratch/grammy/blast/merlin/third_party/llvm-build/bin/clang-23",
+      "-O2",
+      "-fPIC",
+      "-shared",
+      "-nostdlib",
+      "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/one_host_thread.c",
+      "-o",
+      "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/one_host_thread.so"
+    ],
+    "LD_PRELOAD": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/exploration/one_allocation_contracts/verilator_20261117T120031Z/one_host_thread.so",
+    "scope": "std::thread::hardware_concurrency returns 1; unchanged serial RTL model"
+  }
+}

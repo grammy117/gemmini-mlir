@@ -7,5 +7,7 @@
   "shared_readout_epochs": true,
   "generalize_before_fusion": true,
   "scalar_quant_rne": true,
+  "host_optimization_contracts": true,
+  "aligned_host_allocations": true,
   "native_optimization_level": 3
 }

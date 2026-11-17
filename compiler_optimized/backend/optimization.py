@@ -12,6 +12,8 @@ def settings():
                      ('literal_shared_epochs','GEMMINI_OPT_LITERAL_SHARED'),
                      ('shared_readout_epochs','GEMMINI_OPT_READOUT_SHARED'),
                      ('scalar_quant_rne','GEMMINI_OPT_RNE'),
+                     ('aligned_host_allocations','GEMMINI_OPT_ALIGNED_ALLOC'),
+                     ('host_optimization_contracts','GEMMINI_OPT_CONTRACTS'),
                      ('generalize_before_fusion','GEMMINI_OPT_FUSION')]:
         if env in os.environ:
             if os.environ[env] not in ('0','1'):

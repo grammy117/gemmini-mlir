@@ -382,6 +382,7 @@ def lower_whole_program(
             MERLIN_SPLIT_FRESH_DEALLOCS='0', MERLIN_SLICE_UNUSED_ELEMENTWISE_OUTPUT='0')
         from .optimization import settings
         env['MERLIN_GENERALIZE_BEFORE_FUSE'] = '1' if settings()['generalize_before_fusion'] else '0'
+        env['MERLIN_STOCK_ALIGNED_ALLOC'] = '1' if settings()['aligned_host_allocations'] else '0'
         if host_optimization == 'bounded_rne_fused':
             # Existing scalar-pipeline alternative: expose named pointwise
             # operations to the ordinary tensor fusion before bufferization.
@@ -525,11 +526,17 @@ def materialize_combined_llvm_dialect(
         from .host_quant_rne import rewrite
         original_native = linked.read_text()
         selected_native, receipt = rewrite(original_native, result.routed_source.read_text(),
-            host_isa='rv64gc' if '-march=rv64gc' in cflags and '-mabi=lp64d' in cflags else 'unsupported')
+            host_isa='rv64gc' if '-march=rv64gc' in cflags and '-mabi=lp64d' in cflags else 'unsupported',
+            emit_call_contracts=settings()['host_optimization_contracts'])
         (work/'before-scalar-quant-rne.ll').write_text(original_native)
         linked.write_text(selected_native)
         receipt['implementation_sha256'] = hashlib.sha256(Path(__file__).with_name('host_quant_rne.py').read_bytes()).hexdigest()
         (work/'scalar-quant-rne.json').write_text(json.dumps(receipt,indent=2))
+    if settings()['host_optimization_contracts']:
+        from .host_contracts import rewrite
+        native,receipt=rewrite(linked.read_text(),result.routed_source.read_text())
+        linked.write_text(native)
+        (work/'host-contracts.json').write_text(json.dumps(receipt,indent=2))
     target = Path(output) if output is not None else work / 'combined.mlir'
     # Whole-program artifacts expose one executable entry. Inline the exact
     # linked helpers, retaining external runtime declarations as such.
