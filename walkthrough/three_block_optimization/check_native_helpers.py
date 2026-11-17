@@ -37,6 +37,15 @@ class Checks(unittest.TestCase):
         self.assertNotIn('internal internal',out)
     def test_missing_entry_refuses(self):
         with self.assertRaises(ValueError):rewrite(SOURCE.replace('kernel_entry','another_entry'))
+    def test_adapter_policy_preserves_host_computation_context(self):
+        out,r=rewrite(SOURCE,policy='inline_adapters',host_entry='helper')
+        self.assertIn('define internal void @helper() {',out)
+        self.assertNotIn('alwaysinline',out)
+    def test_adapter_policy_requires_owned_host_entry(self):
+        with self.assertRaises(ValueError):rewrite(SOURCE,policy='inline_adapters')
+    def test_adapter_policy_still_inlines_other_helpers(self):
+        out,r=rewrite(SOURCE+'define void @adapter() {\nret void\n}\n',policy='inline_adapters',host_entry='helper')
+        self.assertIn('define internal void @adapter()  alwaysinline {',out)
 
 
 if __name__=='__main__':unittest.main()

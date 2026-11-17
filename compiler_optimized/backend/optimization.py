@@ -25,6 +25,6 @@ def settings():
     if values['native_optimization_level'] not in (1,2,3):
         raise ValueError('native_optimization_level must be 1, 2 or 3')
     values['native_helper_policy']=os.environ.get('GEMMINI_OPT_NATIVE_HELPERS',values['native_helper_policy'])
-    if values['native_helper_policy'] not in ('none','internalize','inline_all'):
-        raise ValueError('native_helper_policy must be none, internalize or inline_all')
+    if values['native_helper_policy'] not in ('none','internalize','inline_all','inline_adapters'):
+        raise ValueError('native_helper_policy must be none, internalize, inline_all or inline_adapters')
     return values

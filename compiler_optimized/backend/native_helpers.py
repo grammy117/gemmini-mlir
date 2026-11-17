@@ -7,11 +7,13 @@ import hashlib
 import re
 
 
-def rewrite(source, *, entry='kernel_entry', policy='inline_all'):
-    if policy not in ('none','internalize','inline_all'):raise ValueError('unknown native helper policy')
+def rewrite(source, *, entry='kernel_entry', policy='inline_all', host_entry=None):
+    if policy not in ('none','internalize','inline_all','inline_adapters'):raise ValueError('unknown native helper policy')
     if not entry.isascii() or not entry.isidentifier():raise ValueError('invalid executable entry')
+    if policy=='inline_adapters' and (not isinstance(host_entry,str) or not host_entry.isascii()
+            or not host_entry.isidentifier() or host_entry==entry):raise ValueError('adapter inlining needs the owned host entry')
     groups=dict(re.findall(r'^attributes #([0-9]+) = \{([^\n]*)\}',source,re.M))
-    report={'schema':'gemmini.native_helpers.v1','entry':entry,'policy':policy,'helpers':[],
+    report={'schema':'gemmini.native_helpers.v1','entry':entry,'host_entry':host_entry,'policy':policy,'helpers':[],
             'source_sha256':hashlib.sha256(source.encode()).hexdigest()}
     lines=[];entries=0
     for line in source.splitlines():
@@ -28,7 +30,7 @@ def rewrite(source, *, entry='kernel_entry', policy='inline_all'):
         line=re.sub(r'^define (?:(?:private|internal|dso_local) )*','define internal ',line)
         attributes=line+' '+' '.join(groups.get(g,'') for g in re.findall(r'#([0-9]+)',line))
         forbidden=re.search(r'\b(noinline|optnone|naked|returns_twice|presplitcoroutine)\b',attributes)
-        inline=policy=='inline_all' and not forbidden
+        inline=(policy=='inline_all' or policy=='inline_adapters' and name!=host_entry) and not forbidden
         if inline and not re.search(r'\balwaysinline\b',attributes):line=line.rstrip()[:-1]+' alwaysinline {'
         report['helpers'].append({'symbol':name,'internal':True,'alwaysinline':inline,
                                    'inline_refusal':forbidden[1] if forbidden else None})

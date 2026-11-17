@@ -540,7 +540,7 @@ def materialize_combined_llvm_dialect(
         linked.write_text(native)
         (work/'host-contracts.json').write_text(json.dumps(receipt,indent=2))
     from .native_helpers import rewrite as select_native_helpers
-    native,receipt=select_native_helpers(linked.read_text(),entry=symbol,policy=settings()['native_helper_policy'])
+    native,receipt=select_native_helpers(linked.read_text(),entry=symbol,host_entry=entry,policy=settings()['native_helper_policy'])
     linked.write_text(native)
     receipt['implementation_sha256']=hashlib.sha256(Path(__file__).with_name('native_helpers.py').read_bytes()).hexdigest()
     (work/'native-helpers.json').write_text(json.dumps(receipt,indent=2))

@@ -1,0 +1,8 @@
+{
+  "policy": "inline_adapters",
+  "host_entry": "forward",
+  "source_variant": "/scratch/grammy/blast/gemmini-mlir/walkthrough/three_block_optimization/variants/one_final",
+  "original_llvm_sha256": "f3ffddc7bf5b4ad9d69e5393a69080a8d5d86d55acef263a2a54840bf1b379cf",
+  "selected_llvm_sha256": "08efa5db4aa8d88325d4ec495d8b061442f41a8ffe3c58b484e893d2842e03ed",
+  "scope": "model object only; unchanged runtime and numeric flags"
+}

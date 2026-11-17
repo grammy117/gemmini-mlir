@@ -1,0 +1,28 @@
+{
+  "schema": "gemmini.native_context_comparison.v1",
+  "measurements": [
+    {
+      "variant": "one_inline_adapters",
+      "groups": 7,
+      "policy": "inline_adapters",
+      "cycles": 359941,
+      "full_inline_reference_cycles": 358988,
+      "receipt": "walkthrough/three_block_optimization/exploration/one_inline_adapters/verilator_20261117T130948Z/result.json",
+      "bit_exact": true,
+      "powf_static_calls": 0
+    },
+    {
+      "variant": "one_cluster_inline_adapters",
+      "groups": 4,
+      "policy": "inline_adapters",
+      "cycles": 356696,
+      "full_inline_reference_cycles": 357674,
+      "receipt": "walkthrough/three_block_optimization/exploration/one_cluster_inline_adapters/verilator_20261117T131420Z/result.json",
+      "bit_exact": true,
+      "powf_static_calls": 0
+    }
+  ],
+  "reason": "retain host function target-library context outside the generated freestanding C wrapper; inline remaining adapters and target helpers",
+  "integrated_grouped_elf_byte_identical": true,
+  "default_decision": "pending three-block comparisons"
+}
