@@ -464,6 +464,7 @@ def materialize_combined_llvm_dialect(
     """
     import subprocess
     import os
+    import re
     from math import prod
     from merlin.llvmlower.toolchain import clang, llvm_install, mlir_translate
     selected_install = Path(os.environ.get('MERLIN_MLIR_INSTALL', str(Path(__file__).resolve().parents[2] / 'install')))
@@ -538,19 +539,17 @@ def materialize_combined_llvm_dialect(
         native,receipt=rewrite(linked.read_text(),result.routed_source.read_text())
         linked.write_text(native)
         (work/'host-contracts.json').write_text(json.dumps(receipt,indent=2))
+    from .native_helpers import rewrite as select_native_helpers
+    native,receipt=select_native_helpers(linked.read_text(),entry=symbol,policy=settings()['native_helper_policy'])
+    linked.write_text(native)
+    receipt['implementation_sha256']=hashlib.sha256(Path(__file__).with_name('native_helpers.py').read_bytes()).hexdigest()
+    (work/'native-helpers.json').write_text(json.dumps(receipt,indent=2))
     target = Path(output) if output is not None else work / 'combined.mlir'
-    # Whole-program artifacts expose one executable entry. Inline the exact
-    # linked helpers, retaining external runtime declarations as such.
-    import re
+    # The selected helper policy already applies to the exact linked input.
+    # Preserve it through the legacy opt/import path as well.
     inline_input = work / 'inline.ll'
     linked_text = linked.read_text()
-    lines = []
-    for line in linked_text.splitlines():
-        if line.startswith('define ') and ('@' + symbol + '(') not in line:
-            if not line.rstrip().endswith('{'):
-                raise WholeProgramError('unsupported multiline LLVM function header')
-            line = line.rstrip()[:-1] + ' alwaysinline {'
-        lines.append(line)
+    lines = linked_text.splitlines()
     completion_symbol = 'kernel_complete'
     completion_asm = 'fence'
     lines.append('define void @kernel_complete() {\n  call void asm sideeffect \"fence\", \"~{memory}\"()\n  ret void\n}')

@@ -1,0 +1,88 @@
+{
+  "schema": "gemmini.native_codegen_comparison.v1",
+  "baseline_cycles": 362214,
+  "scope": "model object only; fixed runtime objects, captures and numeric flags",
+  "measurements": [
+    {
+      "variant": "one_model_o2",
+      "policy": "o2",
+      "cycles": 362586,
+      "receipt": "walkthrough/three_block_optimization/exploration/one_model_o2/verilator_20261117T122634Z/result.json",
+      "model_object_sha256": "b3420a45ab1fdd6d89c97001df71943252e536513fd98a1e7eba61a8bd38ccd2",
+      "elf_bytes": 57600,
+      "bit_exact": true
+    },
+    {
+      "variant": "one_no_unroll",
+      "policy": "no_unroll",
+      "cycles": 442948,
+      "receipt": "walkthrough/three_block_optimization/exploration/one_no_unroll/verilator_20261117T123136Z/result.json",
+      "model_object_sha256": "978668d37ad3ad5599270c886578036fe179339c8677af2cc59e7b0b28d0d7a5",
+      "elf_bytes": 49776,
+      "bit_exact": true
+    },
+    {
+      "variant": "one_internalize",
+      "policy": "internalize",
+      "cycles": 361791,
+      "receipt": "walkthrough/three_block_optimization/exploration/one_internalize/verilator_20261117T123638Z/result.json",
+      "model_object_sha256": "f391fa6e97772ed475fbe0f2be1c33d40f27474f6e4f5ccbe5dfafbd570c298c",
+      "elf_bytes": 65376,
+      "bit_exact": true
+    },
+    {
+      "variant": "one_inline_all",
+      "policy": "inline_all",
+      "cycles": 358988,
+      "receipt": "walkthrough/three_block_optimization/exploration/one_inline_all/verilator_20261117T124113Z/result.json",
+      "model_object_sha256": "7dca95f57897deabccf97d0e2e2ffaef4159844fa6db6d587f1a465178c8b845",
+      "elf_bytes": 68936,
+      "bit_exact": true
+    }
+  ],
+  "os_equivalence": "model.o is byte-identical to O2; no extra RTL run",
+  "promoted_default": "inline_all",
+  "promoted_binary_equivalence": {
+    "measured_variant": "walkthrough/three_block_optimization/exploration/one_inline_all",
+    "fresh_default_variant": "walkthrough/three_block_optimization/variants/one_optimized",
+    "identical_files": [
+      {
+        "file": "model.o",
+        "sha256": "7dca95f57897deabccf97d0e2e2ffaef4159844fa6db6d587f1a465178c8b845"
+      },
+      {
+        "file": "main.o",
+        "sha256": "eb5df4381ffc052ba8c8addd0a477906336a876fc525f75d4b80af536d291c70"
+      },
+      {
+        "file": "crt.o",
+        "sha256": "cdd8da5053eb03083276cddb8aaf7f66738ecedab741de1925e56f63c52f6a76"
+      },
+      {
+        "file": "htif.o",
+        "sha256": "1499345c87ef7bc612736981968291390bfe0d2029b01154973b34b9d530788f"
+      },
+      {
+        "file": "libc_min.o",
+        "sha256": "d6385442a37bb3182f9d28019ead24d8dd47a79f748e077bcf93433154f565d7"
+      },
+      {
+        "file": "merlin_malloc.o",
+        "sha256": "51dee7bc346f8b728af6651ae7249adaf3c6220c5f5badb6346cc540d856022a"
+      },
+      {
+        "file": "mlir_runtime.o",
+        "sha256": "fa5694dc7ef4fb85616c51794819b8c23a1b8698eb579eb9fde51c4e56c42bd1"
+      },
+      {
+        "file": "attention_block.elf",
+        "sha256": "f89f3e696ec873aa60669dc678c8390ffbbba9bb2e73296747ff5ad9dcf05af9"
+      },
+      {
+        "file": "main.c",
+        "sha256": "a0f1dfc8f8a19bed35767468173d7153d9b6ed9c59e5a49bd605b630d7e5a536"
+      }
+    ]
+  },
+  "baseline_full_elf_sha256": "e08f3e66ae4a6d362e438bc57ac0ef3f56c920643c6e295758e4c4ba37d9b0e4"
+}

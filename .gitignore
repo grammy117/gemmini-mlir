@@ -16,3 +16,15 @@ __pycache__/
 /walkthrough/**/verilator_*/one_host_thread.c
 /walkthrough/three_block_optimization/baseline/
 /walkthrough/three_block_optimization/rne_probe.*
+/walkthrough/**/*.stdout.log
+/walkthrough/**/*.stderr.log
+/walkthrough/**/verilator_*/spike.log
+/walkthrough/**/variants/*/*.py
+/walkthrough/**/variants/*/capture/
+/walkthrough/three_block_optimization/exploration/*/*.py
+/walkthrough/three_block_optimization/exploration/*/capture/
+/walkthrough/three_block_optimization/exploration/*_compiler/
+/walkthrough/three_block_optimization/exploration/*_capture*/
+/walkthrough/three_block_optimization/exploration/*.ll
+/walkthrough/three_block_optimization/exploration/*.s
+/walkthrough/three_block_optimization/exploration/*.mlir

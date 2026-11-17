@@ -10,5 +10,6 @@
   "host_optimization_contracts": true,
   "static_host_copies": true,
   "aligned_host_allocations": true,
-  "native_optimization_level": 3
+  "native_optimization_level": 3,
+  "native_helper_policy": "inline_all"
 }
