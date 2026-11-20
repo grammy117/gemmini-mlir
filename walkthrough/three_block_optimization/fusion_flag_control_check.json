@@ -1,0 +1,46 @@
+{
+  "schema": "gemmini.fusion_flag_control_check.v1",
+  "scope": "actual adapter flag-binding statements consumed by the original Merlin scalar pipeline builder",
+  "cases": [
+    {
+      "enabled": false,
+      "inherited": null,
+      "generalize_precedes_fuse": false,
+      "passed": true
+    },
+    {
+      "enabled": false,
+      "inherited": "1",
+      "generalize_precedes_fuse": false,
+      "passed": true
+    },
+    {
+      "enabled": false,
+      "inherited": "0",
+      "generalize_precedes_fuse": false,
+      "passed": true
+    },
+    {
+      "enabled": true,
+      "inherited": null,
+      "generalize_precedes_fuse": true,
+      "passed": true
+    },
+    {
+      "enabled": true,
+      "inherited": "1",
+      "generalize_precedes_fuse": true,
+      "passed": true
+    },
+    {
+      "enabled": true,
+      "inherited": "0",
+      "generalize_precedes_fuse": true,
+      "passed": true
+    }
+  ],
+  "default_enabled_pipeline_unchanged": true,
+  "new_rtl_measurement": false,
+  "measured_compiler_snapshot": "274f251629019e341719f9fc7eb98ff00003f956",
+  "change": "remove MERLIN_GENERALIZE_BEFORE_FUSE when disabled; nonempty string 0 was truthy upstream"
+}

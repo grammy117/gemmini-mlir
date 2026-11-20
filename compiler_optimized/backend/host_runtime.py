@@ -381,7 +381,12 @@ def lower_whole_program(
         env.update(MERLIN_COMPILER_DRIVER='stock-cli', MERLIN_FUSION_GUARD='0',
             MERLIN_SPLIT_FRESH_DEALLOCS='0', MERLIN_SLICE_UNUSED_ELEMENTWISE_OUTPUT='0')
         from .optimization import settings
-        env['MERLIN_GENERALIZE_BEFORE_FUSE'] = '1' if settings()['generalize_before_fusion'] else '0'
+        # The shared pipeline treats this as a nonempty-string switch, so "0"
+        # would enable it too. Remove an inherited value for the off ablation.
+        if settings()['generalize_before_fusion']:
+            env['MERLIN_GENERALIZE_BEFORE_FUSE'] = '1'
+        else:
+            env.pop('MERLIN_GENERALIZE_BEFORE_FUSE', None)
         env['MERLIN_STOCK_ALIGNED_ALLOC'] = '1' if settings()['aligned_host_allocations'] else '0'
         env['MERLIN_STOCK_STATIC_COPIES'] = '1' if settings()['static_host_copies'] else '0'
         if host_optimization == 'bounded_rne_fused':
