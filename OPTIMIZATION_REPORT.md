@@ -309,3 +309,47 @@ The final evidence and review entry points are:
 The completed semantic checks total **67**, plus **43,515** executed scalar-boundary comparisons. Fresh final-default one-, two-, three-block and nearby-shape builds pass complete functional comparisons and device re-emission. Fresh one- and three-block ELFs reproduce the selected measured programs byte-for-byte; that verification is not counted as another RTL sample.
 
 The Git history separates the initial compiler copy/checkpoint, scalar rounding, profiling, allocation/contracts, static copies, native inlining, full-chain evidence, the context-policy alternative, storage guards, strict qualification, final default selection, and the report. The original compiler and historical paper records remain unchanged.
+
+## Large matrix scope and optimization provenance
+
+The 16 by 16 array tile is a primitive, not a whole-matrix size limit. For a product with dimensions M K N, the tile-level reduction has `ceil(K/16)` contributions per output tile. An 8 by 1024 activation times a 1024 by 1024 weight matrix has 64 K tiles and 64 N tiles, giving 4096 preload/compute pairs per projection. General dense lowering already supplies outer loops and capacity-based retained, segmented or conservative schedules.
+
+The selected shared-LHS path has a narrower policy. Both the original and optimized `tuning.json` select `SHARED_PRODUCTS=single_panel`. The backend then requires each member's entire output to fit the selected M/N block. Its shared scheduling domain currently permits at most four M tiles and four N tiles per block, so a 1024-column output cannot satisfy that gate. Graph clustering can still create a multi-product region, but a shared-schedule refusal lowers its products independently. Four extracted groups therefore do not by themselves demonstrate scratchpad reuse.
+
+The nearby capture already exercises this distinction: its Q/K/V group has a `shared_products` receipt, while its 80-column gate/up group has two `dense_schedules` receipts. Functional correctness passed in both cases.
+
+The underlying shared scheduler has counted M/N loops and full-K activation retention. Selecting the broader `SHARED_PRODUCTS=on` route could expose that existing machinery, but it needs independent scheduling, numerical and performance qualification at realistic widths. Static resource planning alone gives the following examples for three int8 members on the selected 256 KiB scratchpad and 64 KiB accumulator configuration:
+
+| Problem M K N | Storage-admitted panel M K N | Current single panel gate |
+|---|---|---|
+| 8 32 32 | 16 32 32 | Accepts the output |
+| 8 1024 1024 | 16 1024 64 | Rejects the output |
+| 128 1024 1024 | 64 1024 64 | Rejects the output |
+| 8 4096 1024 | 16 4096 16 | Rejects the output |
+| 8 5120 1024 | No room for this full-K private-window family | No shared candidate |
+
+This table is a storage calculation, not a scheduling proof, completed compilation or timing result. Panel row extents include padding. The full-K family reserves a common activation panel and private RHS/accumulator windows for each member. Segmented-K sharing or temporal reuse of those private windows would require further scheduling work when that placement no longer fits.
+
+The potential traffic saving also depends on M and D. For an 8-token, width-1024 W8A8 Q/K/V projection, the activation is 8 KiB and the three weights total 3 MiB. Ideal cross-product activation reuse saves two activation reads, 16 KiB, about 0.52% of the original requested input payload. At one-token decode it saves 2 KiB, about 0.065%. These counts exclude outputs, cache-line effects and command overhead. Larger prefill panels can make activation reuse more useful, but the small-model cycle reductions cannot be extrapolated to them. FP32 attention remains on the host in this compiler configuration.
+
+The provenance comparison below uses the original bundled Merlin source and the local Merlin checkout. The checked local `tensor_provenance_cse.py`, `late_quant_rne.py`, `pipeline.py` and `stock_cli.py` are byte-identical to their frozen bundled counterparts. This is not an assertion about every remote Merlin branch.
+
+| Added or selected optimization | Position in the chain | What already existed | What changed here and why the old path missed it |
+|---|---|---|---|
+| Broad pure-tensor CSE | Before extraction | Merlin's exact tensor-preparation CSE and provenance helpers | Expanded eligibility to more pure generic scalar programs and ran it before routing. The older helper primarily covered views, copies, transposes and exact small-integer casts. |
+| Sibling source clustering | After source CSE, before extraction | Multi-output extraction and shared-LHS scheduling in the original artifact | Added dominance/effect-checked source motion so separated sibling products become visible to the existing grouping machinery. |
+| Per-member wide RHS transfers | After shared schedule/epoch construction | Generic tile-load coalescing and a shared-RHS codec | Extended the codec to private per-member RHS calls and pitches, then connected it to the shared-LHS consumer. |
+| Shared readout epochs and raw configuration | Before device instruction emission | Existing epoch and raw-readout configuration machinery | Selected it for compatible shared-LHS members and connected its configuration-aware store consumer. |
+| Bounded literal specialization | After shared transfer/readout selection | Existing loop-unroll primitive, bounded specializer and opt-in knob | Enabled the existing bounded option for this path; larger streams retain counted loops. |
+| Generalize before pointwise fusion | Before host bufferization | Existing `MERLIN_GENERALIZE_BEFORE_FUSE` option | Explicitly selected it for scalar host lowering. Generalizing earlier is not universally appropriate for pipelines whose transform schedules match named contractions. |
+| Bounded scalar RNE legalization | Linked LLVM before native optimization | Merlin's `late_quant_rne` algorithms and LLVM parser helpers | Added a source-bound matcher for the actual `roundevenf` plus ordered compare/select clamp chain, before the local missing-opt seam. The existing matcher finds zero routes on the saved one-block input; the backend matcher finds four. |
+| Aligned allocation selection | Final memref-to-LLVM conversion | Standard MLIR aligned-allocation lowering and the existing runtime allocator | Added stock-CLI selection of `use-aligned-alloc=true`; the previous selected lowering used manual pointer alignment. |
+| Owned allocator/math call facts | Linked LLVM before native optimization | LLVM alias analysis and LICM | Added guarded producer facts for this path so ordinary LLVM passes can exploit fresh pointers and existing pure math. This is not a new alias-analysis or LICM algorithm. |
+| Static strided-copy lowering | After bufferization, before loop conversion | Merlin's default-off `expand_memref_copy` and contiguous-copy machinery | Ported a conservatively guarded form to xDSL plus stock CLI. The existing expansion uses the Python MLIR runner; stock CLI refuses those runner feature requests. |
+| Native helper inlining | Linked LLVM consumed by Clang | The original materializer's internalize/always-inline opt stage | Applied an explicit policy to the actual combined LLVM consumed by the local fallback. The missing standalone opt otherwise left that intended stage unconsumed. |
+
+These are chiefly extensions, feature selections and integration changes. The underlying ideas of tiling, CSE, loop unrolling, copy expansion, scalar rounding and LICM were already known. The original artifact already had substantial per-GEMM scheduling support.
+
+The code establishes several concrete causes: narrower recognition, a source program not arranged for an existing matcher, an opt-in feature not selected, a Python-runner feature unavailable in stock CLI, missing producer facts, or a late pass located beyond a missing local tool. It does not establish the construction agent's intent. The archived run records a budgeted freeze and `converged=false`; that supports treating it as a bounded optimization result, not an exhaustive search of every end-to-end pipeline.
+
+A follow-up source audit on 2026-11-19 also corrected the optional fusion-off binding. Merlin tests the flag's nonempty value, so passing the string `0` had still enabled it. The adapter now removes the variable when disabled. Six actual adapter-to-pipeline checks cover on/off and inherited values. The enabled default and the recorded frozen-versus-optimized pipelines are unchanged. The benchmark receipts and compiler inventory remain the record of the measured snapshot at `274f251`; no new RTL performance result is claimed for this control fix.

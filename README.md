@@ -17,6 +17,8 @@ A block has seven logical projections: Q, K, V, O, gate, up and down. The defaul
 
 The reference uses explicit W8A8 linears, FP32 host arithmetic and deterministic demonstration weights. Reported output equality is against that quantized PyTorch model. The measurements use the same unchanged GemminiRocketConfig Verilator binary with magic memory; they are not FPGA measurements.
 
+The measured model width is 32, with functional checks at width 48. The current `SHARED_PRODUCTS=single_panel` policy restricts shared-LHS reuse to a complete selected output panel; larger Q/K/V outputs such as 1024 columns fall back to independent GEMM schedules inside the extracted region. General GEMM tiling supports larger dimensions, but shared-QKV performance at those widths has not been qualified. The report's scalability and provenance appendix distinguishes these limits from the general host passes and identifies the upstream mechanisms reused.
+
 ## Build and inspect
 
 The checked-in captures and scripts use the existing model2MLIR, Merlin, LLVM, RISC-V runtime and simulator installations on a26. From this checkout:
